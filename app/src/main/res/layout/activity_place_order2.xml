@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/toplayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="#4352D3"
+                    android:elevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="2dp"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_arrow_back" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/back"
+                        android:fontFamily="@font/sfmedium"
+                        android:gravity="center|left"
+                        android:text="Confirm Order"
+                        android:textColor="#fff"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/topimg"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/sfmedium"
+                        android:text="Delivery Address"
+                        android:textColor="#232323"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/custaddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/topimg"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/calibri"
+                        android:text="dsff dfdf dfsdf sfs dsfdsf dfdsf"
+                        android:textColor="#877F7F"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <Button
+
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="#F15D37"
+                    android:clickable="true"
+                    android:fontFamily="@font/calibri"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="Change"
+                    android:textColor="#fff"
+                    android:textSize="12dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F2F2F2"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topimg"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/sfmedium"
+                    android:text="Driver Detail"
+                    android:textColor="#232323"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/thirdlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="15dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Name : "/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/calibri"
+                            android:text="John Wick"
+                            android:textColor="#61606E"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Mobile No. : "/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#61606E"
+                            android:text="+91 8965321478"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Address : "/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#61606E"
+                            android:text="Abc, wall street, new town"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Vehicle No. : "/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#61606E"
+                            android:text="MH 04 AB 0001"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Destination : "/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#61606E"
+                            android:text="Dhule to Sakari"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#656571"
+                            android:text="Rate : "/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/calibri"
+                            android:layout_height="wrap_content"
+                            android:textColor="#61606E"
+                            android:text="500"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#F2F2F2"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topimg"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/sfmedium"
+                    android:text="Select Order Details"
+                    android:textColor="#232323"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="8dp">
+
+
+            </LinearLayout>
+
+
+            <!-- <LinearLayout
+                 android:padding="3dp"
+                 android:layout_marginTop="5dp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:background="#F2F2F2">
+
+                 <ImageView
+                     android:layout_marginLeft="12dp"
+                     android:layout_width="22dp"
+                     android:layout_height="22dp"
+                     android:layout_gravity="center_vertical"
+                     android:src="@drawable/ic_wallet"/>
+                 <CheckBox
+                     android:layout_marginLeft="5dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:buttonTint="#d3d3d3"/>
+
+                 <TextView
+                     android:layout_marginLeft="5dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@id/topimg"
+                     android:drawablePadding="5dp"
+                     android:text="Wallet"
+                     android:fontFamily="@font/sfpro"
+                     android:textColor="#373535"
+                     android:textSize="15sp" />
+
+
+
+             </LinearLayout>-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="@drawable/dotted" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="#fff"
+                    android:paddingTop="15dp">
+
+                    <LinearLayout
+                        android:id="@+id/names"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@id/data"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:fontFamily="@font/sfpro"
+                            android:text="Sub Total : "
+                            android:textColor="#5E5B5B"
+                            android:textSize="13sp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sfpro"
+                            android:text="GST/Tax : "
+                            android:textColor="#5E5B5B"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="8dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/sfmedium"
+                            android:text="Final Order Amount : "
+                            android:textColor="#5D8331"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:fontFamily="@font/sfpro"
+                            android:text="$ 945.0"
+                            android:textColor="#5E5B5B"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sfpro"
+                            android:text="$ 9400"
+                            android:textColor="#5E5B5B"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/topimg"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="8dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/sfmedium"
+                            android:text="$50"
+                            android:textColor="#5D8331"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_place_order"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/bordersquarered"
+        android:drawableLeft="@drawable/ic_cartaddplus"
+        android:fontFamily="@font/calibri"
+        android:paddingLeft="80dp"
+        android:paddingRight="90dp"
+        android:text="Place Order"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+
+</RelativeLayout>

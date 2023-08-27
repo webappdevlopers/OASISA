@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation2"
+    app:startDestination="@+id/navigation_Complaint">
+    <fragment
+        android:id="@+id/navigation_Complaint"
+        android:name="com.webapp.oasis.Admin.Complaint.ComplaintsFragment"
+        android:label="@string/title_complain" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.webapp.oasis.Technician.TechnicianProfileFragment"
+        android:label="@string/title_profile" />
+</navigation>

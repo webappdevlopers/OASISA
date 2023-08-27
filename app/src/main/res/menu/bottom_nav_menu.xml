@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/inventory"
+        android:title="@string/title_stock" />
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/technician"
+        android:title="@string/title_technician" />
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/complaint"
+        android:title="@string/title_complain" />
+    <item
+        android:id="@+id/navigation_report"
+        android:icon="@drawable/ic_list"
+        android:title="@string/title_reports" />
+</menu>

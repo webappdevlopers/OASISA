@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:paddingLeft="10dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_notifications"
+            app:tint="#4352D3" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfmedium"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#4E4B4B"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/vehical_np"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="12/12/2025"
+                android:gravity="center"
+                android:background="@drawable/bordergrey_square"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#635F5F"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:layout_marginRight="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="2dp"
+                android:textSize="9dp" />
+            <TextView
+                android:id="@+id/place"
+                android:layout_below="@id/name"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="Place"
+                android:textColor="#918B8B"
+                android:textSize="12dp" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_below="@id/place"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="date"
+
+                android:textColor="#918B8B"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btnstatus"
+                android:layout_width="70dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="23dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/border_blue_curve"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:textSize="13dp"
+                android:fontFamily="@font/calibri"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:text="Approve"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFF4EE"/>
+
+</RelativeLayout>

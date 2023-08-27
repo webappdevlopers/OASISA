@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ba"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Welcome to \n Oasis"
+            android:textColor="#fff"
+            android:textSize="50dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/secondlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ba">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvdemo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sign up"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:textColor="#4a4343"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="Enter your details to login."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="#8e8585"
+                        android:textSize="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="26dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Name"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <EditText
+                            android:id="@+id/phonenumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Mobile Number "
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_alternate_mobile_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/another_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Alternate Mobile Number (Optional)"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lladdress"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/etadress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Address"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/et_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Area"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_pincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/et_pincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="PinCode"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_make"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/et_make"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Machine Make (Optional)"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lladminpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Password "
+                            android:inputType="textPassword"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_model_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordergrey"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/et_model_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="#f0f1f5"
+                            android:hint="Machine Model (Optional)"
+                            android:paddingLeft="7dp"
+                            android:singleLine="true"
+                            android:textColor="#1c1c1c"
+                            android:textColorHint="#1f1f1f"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_upload_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/ProfilePicture1"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/camera3"
+                            app:civ_border_color="#efe9e9"
+                            app:civ_border_width="1dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:fontFamily="@font/sfpro"
+                            android:text="Select Image (Optional)"
+                            android:textColor="#625f65"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lladminId"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/bordergrey"
+                        android:gravity="center"
+                        android:padding="1dp">
+
+                        <Spinner
+                            android:id="@+id/spngender"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="3dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/driverlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bordergrey"
+                            android:orientation="horizontal">
+
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/spngenderV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="3dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bordergrey"
+                            android:orientation="horizontal">
+
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/spngenderS"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="3dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/bordergrey"
+                            android:gravity="center">
+
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/spngenderD"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="3dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bordergrey"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/acc_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:background="#f0f1f5"
+                                android:hint="Bank Account Number"
+                                android:inputType="textCapCharacters"
+                                android:paddingLeft="7dp"
+                                android:singleLine="true"
+                                android:textColor="#1c1c1c"
+                                android:textColorHint="#1f1f1f"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.mikhaellopez.circularimageview.CircularImageView
+                                android:id="@+id/ProfilePicture2"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_marginLeft="15dp"
+                                android:clickable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/camera3"
+                                app:civ_border_color="#efe9e9"
+                                app:civ_border_width="1dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:fontFamily="@font/sfpro"
+                                android:text="Vehicle Photo"
+                                android:textColor="#625f65"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.mikhaellopez.circularimageview.CircularImageView
+                                android:id="@+id/ProfilePicture3"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_marginLeft="15dp"
+                                android:clickable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/camera3"
+                                app:civ_border_color="#efe9e9"
+                                app:civ_border_width="1dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:fontFamily="@font/sfpro"
+                                android:text="RC Book Photo"
+                                android:textColor="#625f65"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.mikhaellopez.circularimageview.CircularImageView
+                                android:id="@+id/ProfilePicture4"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_marginLeft="15dp"
+                                android:clickable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/camera3"
+                                app:civ_border_color="#efe9e9"
+                                app:civ_border_width="1dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:fontFamily="@font/sfpro"
+                                android:text="Cancel Check Photo"
+                                android:textColor="#625f65"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioButton
+                            android:id="@+id/Student"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="#777070"
+                            android:padding="5dp"
+                            android:text="Customer"
+                            android:textColor="#777070" />
+
+                        <RadioButton
+                            android:id="@+id/Graduate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.1"
+                            android:backgroundTint="#777070"
+                            android:padding="5dp"
+                            android:text="Driver"
+                            android:textColor="#777070" />
+
+                        <RadioButton
+                            android:id="@+id/Admin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="#777070"
+                            android:padding="5dp"
+                            android:text="Admin"
+                            android:textColor="#777070" />
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/signin"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/bordersquarered"
+                        android:clickable="true"
+                        android:fontFamily="@font/calibri"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:text="Sign up"
+                        android:textColor="#fff"
+                        android:textSize="16dp" />
+
+                    <Button
+                        android:id="@+id/driverlogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/bordersquarered"
+                        android:clickable="true"
+                        android:fontFamily="@font/calibri"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:text="Sign in"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/rastasuraksha"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/rastasurksha"
+        android:visibility="gone" />
+</RelativeLayout>

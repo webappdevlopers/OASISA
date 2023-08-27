@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:paddingTop="5dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/thirdlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_gravity="top"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Date / Time : "/>
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:padding="4dp"
+                    android:background="@drawable/bordergrey_square"
+                    android:text="10-10-2020 / 12:00 PM"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Invoice No. : "/>
+
+                <TextView
+                    android:id="@+id/invoice_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/calibri"
+                    android:text="#1234"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Driver    : "/>
+                <TextView
+                    android:id="@+id/driver_name"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Helmet"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Reciever   : "/>
+                <TextView
+                    android:id="@+id/receiver_name"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Helmet"/>
+
+            </LinearLayout>
+          <!--  <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Status    : "/>
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="match_parent"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/sfpro"
+                    android:layout_height="wrap_content"
+                    android:textColor="#009688"
+                    android:text="verify"/>
+
+            </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Amount    : "/>
+                <TextView
+                    android:id="@+id/final_cost"
+                    android:layout_width="match_parent"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/sfpro"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="0"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Source : "/>
+                <TextView
+                    android:id="@+id/source"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Mumbai to Pune"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Destination : "/>
+                <TextView
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Mumbai to Pune"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right"
+        android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:textSize="15dp"
+            android:fontFamily="@font/sfpro"
+            android:layout_height="wrap_content"
+            android:textColor="#009688"
+            android:text="verify"/>
+        <ImageView
+            android:id="@+id/imginvoice"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/invoicepng"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/thirdlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#E5E5E5"/>
+</RelativeLayout>

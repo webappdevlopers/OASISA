@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:paddingTop="5dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/thirdlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_gravity="top"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Name : "/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/calibri"
+                    android:text="John Wick"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Mobile No. : "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="+91 8965321478"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Address : "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Abc, wall street, new town"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Vehicle No. : "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="MH 04 AB 0001"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Destination : "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="Dhule to Sakari"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#656571"
+                    android:text="Rate : "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content"
+                    android:textColor="#61606E"
+                    android:text="500"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topimg"
+                    android:fontFamily="@font/calibri"
+                    android:text="19 Dec 2019"
+                    android:textColor="#62626A"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topimg"
+                    android:fontFamily="@font/calibri"
+                    android:text=" | "
+                    android:textColor="#5E5B5B"
+                    android:textSize="11sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topimg"
+                    android:fontFamily="@font/calibri"
+                    android:text="09:45 AM"
+                    android:textColor="#62626A"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right"
+        android:paddingRight="14dp">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/ic_delivery_truck"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:textSize="12dp"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:fontFamily="@font/sfsemibold"
+            android:text="Track"/>
+        <Button
+            android:layout_marginTop="7dp"
+            android:layout_width="90dp"
+            android:layout_height="27dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/border_blue_curve"
+            android:textSize="12dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:text="Place Order"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/thirdlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#E5E5E5"/>
+</RelativeLayout>

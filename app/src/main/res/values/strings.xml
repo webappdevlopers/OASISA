@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_api_key">AIzaSyBCPMzfRoKIwOu1tn80r_Aeojob0nEQh1w</string>
+    <string name="app_name">OASIS GLOBE</string>
+    <string name="title_activity_admin_home_page">AdminHomePage</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_map_single_driver">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_complain">Complaints</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="server_url">https://ifb2.000webhostapp.com</string>
+
+    <string name="search_hint">Search…</string>
+    <string name="search_menu_title">Search</string>
+    <string name="select_country">Select a country</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_reports">Reports</string>
+    <string name="title_stock">Stock</string>
+    <string name="title_technician">Technician</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

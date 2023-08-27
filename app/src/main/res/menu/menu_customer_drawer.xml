@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/grp_1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/addcomplaint"
+            android:icon="@drawable/ic_plus"
+            android:title="Add Complaint" />
+        <item
+            android:id="@+id/complaintstatus"
+            android:icon="@drawable/complaint"
+            android:title="Complaint Status" />
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_userss"
+            android:title="Profile" />
+        <item
+            android:id="@+id/invoice"
+            android:icon="@drawable/ic_invoice"
+            android:visible="false"
+            android:title="Invoice" />
+        <item
+            android:id="@+id/donation"
+            android:icon="@drawable/ic_rupees"
+            android:title="Donation"
+            android:visible="false" />
+        <item
+            android:id="@+id/ShareApp"
+            android:icon="@drawable/ic_share"
+            android:title="Share App" />
+        <item
+            android:id="@+id/Rate"
+            android:icon="@drawable/ic_rating"
+            android:title="Rate App" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logouts"
+            android:title="Logout" />
+    </group>
+</menu>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:id="@+id/thirdlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="2dp"
+        android:layout_toLeftOf="@+id/rightlayout"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Name : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/driver_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/calibri"
+                    android:text="John Wick"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Mobile No. : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="+91 8965321478"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Address : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Abc, wall street, new town"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Vehicle No. : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/vehical_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="MH 04 AB 0001"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Destination : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Dhule to Sakari"
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Cost/Kg : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/costpkg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text=""
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Subtotal : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/sub_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text=""
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Final Cost : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/final_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text=""
+                    android:textColor="#61606E"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rightlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bordergrey_square"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topimg"
+                android:fontFamily="@font/calibri"
+                android:text="19 Dec 2019 09:45 AM"
+                android:textColor="#62626A"
+                android:textSize="11sp" />
+            <!--  <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/topimg"
+                  android:fontFamily="@font/calibri"
+                  android:text=" | "
+                  android:textColor="#5E5B5B"
+                  android:textSize="11sp" />
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/topimg"
+                  android:fontFamily="@font/calibri"
+                  android:text="09:45 AM"
+                  android:textColor="#62626A"
+                  android:textSize="12sp" />-->
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_track"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_blue_curve"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Track"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btn_invoice"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border_blue_curve"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Invoice"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/sfpro"
+            android:text="Delivered"
+            android:textColor="#39B555"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_below="@id/thirdlayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="#E5E5E5" />
+</RelativeLayout>

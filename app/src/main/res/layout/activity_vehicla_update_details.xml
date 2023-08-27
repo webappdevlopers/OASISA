@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@id/text"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="#4C58D2"
+        android:elevation="3.0dip"
+        android:paddingTop="5.0dip"
+        android:paddingBottom="5.0dip">
+
+        <ImageView
+            android:id="@id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15.0dip"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8.0dip"
+            android:layout_toRightOf="@id/back"
+            android:fontFamily="@font/sfpro"
+            android:gravity="center"
+            android:text=" Add Vehicle"
+            android:textColor="#fff"
+            android:textSize="18.0dip" />
+        <ImageView
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_list"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp"
+            app:tint="#fff" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Vehicle Details"
+                android:gravity="left"
+                android:textSize="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="#1F1F1F" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/licence_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:inputType="text"
+                    android:hint="Licence Number"
+                    android:singleLine="true"
+                    android:paddingLeft="7dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/vehical_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:hint="Vehicle Number"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/source"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:hint="Source"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:hint="Destination"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/costpkg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:inputType="number"
+                    android:hint="Cost Per Kg"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:visibility="gone"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/minodrpkg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:inputType="number"
+                    android:hint="Minimum Order in Kg"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:padding="3dp"
+                android:visibility="gone"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bordergrey"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/maxodrpkg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14dp"
+                    android:inputType="number"
+                    android:hint="Maximum Order in Kg"
+                    android:singleLine="true"
+                    android:paddingLeft="10dp"
+                    android:background="#F0F1F5"
+                    android:textColor="#1F1F1F"
+                    android:textColorHint="#1F1F1F"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="5dp"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_camera_alt_black_24dp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_vehicle_submit"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="160dp"
+                android:background="@drawable/bordersquarered"
+                android:clickable="true"
+                android:fontFamily="@font/calibri"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="SUBMIT"
+                android:textColor="#fff"
+                android:textSize="15.5dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

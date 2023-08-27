@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dip"
+                    android:background="#4C58D2"
+                    android:elevation="3.0dip"
+                    android:paddingTop="5.0dip"
+                    android:paddingBottom="5.0dip">
+
+                    <ImageView
+                        android:id="@id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15.0dip"
+                        android:clickable="true"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_arrow_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8.0dip"
+                        android:layout_toRightOf="@id/back"
+                        android:fontFamily="@font/sfpro"
+                        android:gravity="center"
+                        android:text=" Donation"
+                        android:textColor="#fff"
+                        android:textSize="18.0dip" />
+                </RelativeLayout>
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/secondlayout"
+                    android:textSize="14dp"
+                    android:text="Enter Donation Amount"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:padding="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/bordergrey"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edtamount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14dp"
+                        android:singleLine="true"
+                        android:paddingLeft="7dp"
+                        android:textColorHint="#1F1F1F"
+                        android:hint="Amount"
+                        android:background="#F0F1F5"
+                        android:inputType="number"
+                        android:textColor="#1C1C1C"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_pay"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_below="@id/linear"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="50dp"
+                android:background="#4C58D2"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:fontFamily="@font/calibri"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="Add Donation"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

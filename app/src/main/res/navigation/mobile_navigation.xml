@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.webapp.oasis.Admin.Stock.StockFragment"
+        android:label="@string/title_stock" />
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.webapp.oasis.Admin.technician.TechnicianFragment"
+        android:label="@string/title_technician" />
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.webapp.oasis.Admin.Complaint.ComplaintsFragment"
+        android:label="@string/title_complain" />
+    <fragment
+        android:id="@+id/navigation_report"
+        android:name="com.webapp.oasis.Admin.ReportFragment"
+        android:label="@string/title_reports" />
+</navigation>

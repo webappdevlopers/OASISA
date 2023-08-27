@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/secondlayout"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="-65dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/buildings" />
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/transparent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            app:theme="@style/MyActionBarTheme" />
+
+        <TextView
+            android:id="@+id/tvdemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/rladdagent"
+            android:singleLine="true"
+            android:text="Welcome To OASIS"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+        <RelativeLayout
+            android:id="@+id/rllogout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@drawable/backgroundwhtie">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_logouts"
+                app:tint="#4352d3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlnotification"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:visibility="gone"
+            android:layout_toLeftOf="@+id/rllogout"
+            android:layout_weight="1"
+            android:background="@drawable/backgroundwhtie"
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_notifications"
+                app:tint="#4352d3" />
+
+            <TextView
+                android:id="@+id/tltnoti1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/borderpink"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="10dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rladdagent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/rlnotification"
+            android:layout_weight="1"
+            android:background="@drawable/backgroundwhtie"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="9dp"
+                android:layout_height="13dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_plusicon"
+                app:tint="#4352d3" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/secondlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rastasuraksha">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="@font/sfpro"
+                        android:gravity="center"
+                        android:text="Admin"
+                        android:textColor="#fff"
+                        android:textSize="19dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_addtechnician"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                app:srcCompat="@drawable/ic_plusicon"
+                                app:tint="#575fa8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="16dp"
+                                android:text="Add Technician"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_technicial_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                app:srcCompat="@drawable/technician"
+                                app:tint="#575fa8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="List Technician"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-15dp"
+                        android:orientation="horizontal"
+                        android:padding="15dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_additem"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                app:srcCompat="@drawable/ic_notifications"
+                                app:tint="#575fa8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="16dp"
+                                android:text="Notification"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_invoices"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                android:src="@drawable/invoicepng" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="16dp"
+                                android:text="Invoice"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/rastasuraksha"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/logo" />
+</RelativeLayout>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bordergrey_square"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:id="@+id/thirdlayout"
+        android:layout_toLeftOf="@id/llayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="5dp"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Complaint : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/complaint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="123"
+                    android:textColor="#61606c"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Service : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/calibri"
+                    android:text="John Wick"
+                    android:textColor="#61606c"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Date : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/date_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="14-03-1997"
+                    android:textColor="#61606e"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Timing : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/timing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="80dp"
+                    android:fontFamily="@font/calibri"
+                    android:text="10 Am"
+                    android:textColor="#61606c"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="Start AMC Date : "
+                    android:textColor="#656571"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/start_amc_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="80dp"
+                    android:fontFamily="@font/calibri"
+                    android:text="Mumbai to Pune"
+                    android:textColor="#61606c"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+                        android:text="End Amc Date : "
+                        android:textColor="#656571"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/end_amc_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+                        android:text="1.5 kg"
+                        android:textColor="#61606c"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+                        android:text="Qauntity : "
+                        android:textColor="#61606c"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/qty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+                        android:text="2"
+                        android:textColor="#61606e"
+                        android:textSize="14dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingRight="10dp">
+
+        <EditText
+            android:id="@+id/edtamount"
+            android:layout_width="75dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bordergrey_square"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:hint="Amount"
+            android:inputType="numberDecimal"
+            android:maxLength="5"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="75dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_blue_curve"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Accept"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="10dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_track"
+            android:layout_width="75dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_blue_curve"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Track"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="10dp"
+            android:visibility="gone" />
+
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_blue_curve"
+            android:clickable="true"
+            android:fontFamily="@font/sfsemibold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Invoice"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:visibility="gone"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/calibri"
+            android:gravity="center"
+            android:text="Pending"
+            android:textColor="#f44336"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/parcel_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="5dp"
+            app:srcCompat="@drawable/ic_email" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/helmet"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/call"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_green"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_centerInParent="true"
+                    android:tint="#fff"
+                    app:srcCompat="@drawable/ic_phone_call" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/whatsapp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_green"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_whatsapp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
