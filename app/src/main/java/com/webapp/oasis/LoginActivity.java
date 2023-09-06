@@ -56,8 +56,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -389,19 +387,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        this.mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equals(Config1.REGISTRATION_COMPLETE)) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(Config1.TOPIC_GLOBAL);
-                    LoginActivity.this.displayFirebaseRegId();
-                } else if (intent.getAction().equals(Config1.PUSH_NOTIFICATION)) {
-                    String message = intent.getStringExtra("message");
-                    Context applicationContext = LoginActivity.this.getApplicationContext();
-                    Toast.makeText(applicationContext, "Push notification: " + message, Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-        displayFirebaseRegId();
+
+       //displayFirebaseRegId();
         this.mySpinner = (Spinner) findViewById(R.id.spngender);
         this.flats1.add("Select Admin");
         this.flatids1.add("0");
@@ -617,16 +604,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /* access modifiers changed from: private */
-    public void displayFirebaseRegId() {
-        String regId = getApplicationContext().getSharedPreferences(Config1.SHARED_PREF, 0).getString("regId", (String) null);
-        Log.e("TAG", "Firebase reg id: " + regId);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener((Activity) this, new OnSuccessListener<InstanceIdResult>() {
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                LoginActivity.this.newToken = instanceIdResult.getToken();
-                Log.e("get token", LoginActivity.this.newToken);
-            }
-        });
-    }
+
 
     /* access modifiers changed from: private */
     public void login() {

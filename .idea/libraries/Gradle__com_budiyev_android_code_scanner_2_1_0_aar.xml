@@ -6,6 +6,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/859614febccd0fb6bda7fe049a4b5f31/jetified-code-scanner-2.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/859614febccd0fb6bda7fe049a4b5f31/jetified-code-scanner-2.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/859614febccd0fb6bda7fe049a4b5f31/jetified-code-scanner-2.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.budiyev.android/code-scanner/2.1.0/50b384a1ffe3410a467ba6b3e6a3e958ccaeefe1/code-scanner-2.1.0-javadoc.jar!/" />

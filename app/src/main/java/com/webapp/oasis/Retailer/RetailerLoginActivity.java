@@ -42,8 +42,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
@@ -191,14 +189,6 @@ public class RetailerLoginActivity extends AppCompatActivity {
 
         Log.e("TAG", "Firebase reg id: " + regId);
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(RetailerLoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                newToken = instanceIdResult.getToken();
-                Log.e("get token", newToken);
-//                Toast.makeText(LoginActivity.this, newToken, Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }

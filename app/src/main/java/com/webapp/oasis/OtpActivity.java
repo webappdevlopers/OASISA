@@ -319,7 +319,7 @@ public class OtpActivity extends AppCompatActivity {
         }
 
 
-        sendVerificationCode(mobile);
+        //sendVerificationCode(mobile);
 
         verify = findViewById(R.id.verify);
 
@@ -356,14 +356,6 @@ public class OtpActivity extends AppCompatActivity {
         countDownTimer.start();
     }
 
-    private void sendVerificationCode(String no) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + no,
-                60,
-                TimeUnit.SECONDS,
-                TaskExecutors.MAIN_THREAD,
-                mCallbacks);
-    }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override

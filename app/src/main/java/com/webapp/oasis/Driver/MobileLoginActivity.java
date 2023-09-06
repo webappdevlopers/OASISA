@@ -25,8 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
@@ -85,7 +83,7 @@ public class MobileLoginActivity extends AppCompatActivity {
                 if (intent.getAction().equals(Config1.REGISTRATION_COMPLETE)) {
                     FirebaseMessaging.getInstance().subscribeToTopic(Config1.TOPIC_GLOBAL);
 
-                    displayFirebaseRegId();
+                  //  displayFirebaseRegId();
 
                 } else if (intent.getAction().equals(Config1.PUSH_NOTIFICATION)) {
 
@@ -94,7 +92,7 @@ public class MobileLoginActivity extends AppCompatActivity {
                 }
             }
         };
-        displayFirebaseRegId();
+        //displayFirebaseRegId();
 
         requestPermission();
     }
@@ -104,23 +102,7 @@ public class MobileLoginActivity extends AppCompatActivity {
                 {CAMERA, Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
     }
 
-    private void displayFirebaseRegId() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config1.SHARED_PREF, 0);
-        String regId = pref.getString("regId", null);
 
-        Log.e("TAG", "Firebase reg id: " + regId);
-
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MobileLoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                newToken = instanceIdResult.getToken();
-                Log.e("get token", newToken);
-//                Toast.makeText(LoginActivity.this, newToken, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
     private void driver_login() {
 
         final ProgressDialog showMe = new ProgressDialog(MobileLoginActivity.this);

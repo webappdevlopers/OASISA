@@ -224,7 +224,7 @@ public class RetailerOtpActivity extends AppCompatActivity {
         retailer_user_type=getIntent().getStringExtra("retailer_user_type");
         mobile1=getIntent().getStringExtra("mobile1");
 
-        sendVerificationCode(getIntent().getStringExtra("mobile1"));
+        //sendVerificationCode(getIntent().getStringExtra("mobile1"));
 
         verify = findViewById(R.id.verify);
 
@@ -242,14 +242,7 @@ public class RetailerOtpActivity extends AppCompatActivity {
         });
     }
 
-    private void sendVerificationCode(String no) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + no,
-                60,
-                TimeUnit.SECONDS,
-                TaskExecutors.MAIN_THREAD,
-                mCallbacks);
-    }
+
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
