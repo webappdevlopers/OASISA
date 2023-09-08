@@ -32,6 +32,7 @@ public class Add_Admin_credentials extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_admin_credentials);
         username = findViewById(R.id.username);
+        back = findViewById(R.id.back);
         generate_password = findViewById(R.id.generate_password);
         submit = findViewById(R.id.btn_pin_submit);
         submit.setOnClickListener(new View.OnClickListener() {

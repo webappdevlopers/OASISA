@@ -48,6 +48,9 @@ import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
 public class LoginFirstScreen extends AppCompatActivity {
+    private Timer autoScrollTimer;
+    private TimerTask autoScrollTimerTask;
+
     public static final String GOOGLE_ACCOUNT = "google_account";
     RelativeLayout btnadmin;
     RelativeLayout btnretailer;
@@ -72,6 +75,7 @@ public class LoginFirstScreen extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_login_first_screen);
+        startAutoScrollTimer();
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
@@ -271,4 +275,46 @@ public class LoginFirstScreen extends AppCompatActivity {
             }
         });
     }
+    private void startAutoScrollTimer() {
+        autoScrollTimer = new Timer();
+        autoScrollTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+                    }
+                });
+            }
+        };
+
+        // Change the delay to 5000 milliseconds (5 seconds) and the period to 5000 milliseconds (5 seconds)
+        autoScrollTimer.schedule(autoScrollTimerTask, 10000000, 10000000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopAutoScrollTimer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopAutoScrollTimer();
+    }
+
+    private void stopAutoScrollTimer() {
+        if (autoScrollTimer != null) {
+            autoScrollTimer.cancel();
+            autoScrollTimer = null;
+        }
+
+        if (autoScrollTimerTask != null) {
+            autoScrollTimerTask.cancel();
+            autoScrollTimerTask = null;
+        }
+    }
+
 }

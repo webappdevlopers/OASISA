@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 app:avp_autoScroll="true"
-                app:avp_duration="9000"
+                app:avp_duration="29000"
                 app:avp_indeterminate="true" />
 
             <me.relex.circleindicator.CircleIndicator
