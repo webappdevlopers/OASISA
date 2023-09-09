@@ -88,7 +88,10 @@ public class LoginFirstScreen extends AppCompatActivity {
             public void run() {
                 LoginFirstScreen.this.runOnUiThread(new Runnable() {
                     public final void run() {
+
                         lambda$run$0$LoginFirstScreen$1();
+                      //  throw new RuntimeException("Test Crash"); // Force a crash
+
                     }
                 });
             }
