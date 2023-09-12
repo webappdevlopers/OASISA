@@ -20,3 +20,5 @@
 
 # Your application classes configuration
 -keep class com.webapp.oasis.** { *; }
+-keep class org.json.** { *; }
+

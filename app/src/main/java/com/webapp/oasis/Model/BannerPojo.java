@@ -1,5 +1,8 @@
 package com.webapp.oasis.Model;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class BannerPojo {
 
     private String BannerImage;
