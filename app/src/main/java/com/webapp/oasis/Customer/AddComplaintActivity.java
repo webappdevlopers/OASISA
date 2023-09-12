@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Oscillator;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.BaseRequestOptions;
@@ -102,6 +103,9 @@ public class AddComplaintActivity extends AppCompatActivity {
         ActivityLogComplaintBinding inflate = ActivityLogComplaintBinding.inflate(getLayoutInflater());
         this.binding = inflate;
         setContentView((View) inflate.getRoot());
+
+        requestPermission();
+
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
         HashMap<String, String> users = sessionManager.getUserDetails();
@@ -367,6 +371,10 @@ public class AddComplaintActivity extends AppCompatActivity {
         });
     }
 
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{"android.permission-group.CAMERA", "android.permission.CAMERA", android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+    }
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         if (requestCode != 1) {
