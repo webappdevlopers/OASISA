@@ -295,8 +295,10 @@ public class AddTechnicianActivity extends AppCompatActivity {
         data.put("email", this.email.getText().toString());
         data.put("AdhaarCard", this.adhaarImageUrl);
         data.put("License", this.licenceImageurl);
+        data.put("isDelete", "false");
         String technicianId = myRef.push().getKey();
         data.put("Technician ID", technicianId);
+
         myRef.child(technicianId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(Task<Void> task) {
                 if (task.isSuccessful()) {

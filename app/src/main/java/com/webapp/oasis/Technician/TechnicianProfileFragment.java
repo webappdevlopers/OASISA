@@ -53,7 +53,7 @@ public class TechnicianProfileFragment extends Fragment {
                     Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                     while (it.hasNext()) {
                         DataSnapshot itemSnapshot = it.next();
-                        AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class));
+                        AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class),(String) itemSnapshot.child("isDelete").getValue(String.class));
                         if(agentListModel2.getTechnician_id().equals(technicianId_session)){
 
                             TechnicianProfileFragment.this.binding.name.setText(agentListModel2.getName());

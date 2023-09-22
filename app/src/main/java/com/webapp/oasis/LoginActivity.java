@@ -171,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
     public ArrayList<String> vehiclename = new ArrayList<>();
     public static String userType;
     String Admin_id;
-
+    String isdelete;
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -307,6 +307,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String str = (String) itemSnapshot.child("Name").getValue(String.class);
                                     LoginActivity.this.Mobile = (String) itemSnapshot.child("Mobile").getValue(String.class);
                                     LoginActivity.this.Technician_Password = (String) itemSnapshot.child("Technician Password").getValue(String.class);
+                                   isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                     String str2 = (String) itemSnapshot.child("email").getValue(String.class);
                                     String str3 = (String) itemSnapshot.child("AdhaarCard").getValue(String.class);
                                     String str4 = (String) itemSnapshot.child("License").getValue(String.class);
@@ -317,12 +318,16 @@ public class LoginActivity extends AppCompatActivity {
                                         break;
                                     }
                                 }
-                                if (LoginActivity.this.isInvalid) {
-                                    LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
-                                    LoginActivity.this.finish();
-                                    LoginActivity.this.session.LoginCode(ExifInterface.GPS_MEASUREMENT_2D);
-                                    LoginActivity.this.session.createLoginSessionTecnician(LoginActivity.this.Technician_ID);
-                                    return;
+
+                                if(!isdelete.equals("true")){
+                                    if (LoginActivity.this.isInvalid) {
+                                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
+                                        LoginActivity.this.finish();
+                                        LoginActivity.this.session.LoginCode(ExifInterface.GPS_MEASUREMENT_2D);
+                                        LoginActivity.this.session.createLoginSessionTecnician(LoginActivity.this.Technician_ID);
+                                        return;
+                                    }
+
                                 }
                                 Toast.makeText(LoginActivity.this, "Invalid mobile number or password", Toast.LENGTH_SHORT).show();
                                 return;
@@ -388,7 +393,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-       //displayFirebaseRegId();
+        //displayFirebaseRegId();
         this.mySpinner = (Spinner) findViewById(R.id.spngender);
         this.flats1.add("Select Admin");
         this.flatids1.add("0");

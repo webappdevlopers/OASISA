@@ -76,25 +76,33 @@ public class TechnicianListActivity extends AppCompatActivity {
                     Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                     while (it.hasNext()) {
                         DataSnapshot itemSnapshot = it.next();
-                        Iterator<DataSnapshot> it2 = it;
-//                        AgentListModel agentListModel = r4;
-                        DataSnapshot dataSnapshot2 = itemSnapshot;
-                        ArrayList<AgentListModel> arrayList = TechnicianListActivity.this.f20dm;
-                        AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class));
-                        arrayList.add(agentListModel2);
-                        TechnicianListActivity technicianListActivity = TechnicianListActivity.this;
-                        technicianListActivity.myOrderAdapter = new technicianListAdapter(technicianListActivity.getApplicationContext(), TechnicianListActivity.this.f20dm);
-                        TechnicianListActivity.this.mRecyclerView.setAdapter(TechnicianListActivity.this.myOrderAdapter);
+                        AgentListModel agentListModel = new AgentListModel(
+                                (String) itemSnapshot.child("Name").getValue(String.class),
+                                (String) itemSnapshot.child("Mobile").getValue(String.class),
+                                (String) itemSnapshot.child("Technician Password").getValue(String.class),
+                                (String) itemSnapshot.child("email").getValue(String.class),
+                                (String) itemSnapshot.child("AdhaarCard").getValue(String.class),
+                                (String) itemSnapshot.child("License").getValue(String.class),
+                                (String) itemSnapshot.child("Technician ID").getValue(String.class),
+                                (String) itemSnapshot.child("isDelete").getValue(String.class)
+                        );
+
+                        // Check if isDelete is not "true" before adding to the list
+                        if (!agentListModel.getIsDeleted().equals("true")) {
+                            f20dm.add(agentListModel);
+                        }
+
+                        myOrderAdapter = new technicianListAdapter(getApplicationContext(), f20dm);
+                        TechnicianListActivity.this.mRecyclerView.setAdapter(myOrderAdapter);
                         TechnicianListActivity.this.myOrderAdapter.notifyDataSetChanged();
                         showMe.dismiss();
-                        it = it2;
                     }
-                    return;
+                } else {
+                    showMe.dismiss();
                 }
-                showMe.dismiss();
             }
 
-            public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(DatabaseError databaseError) {
                 Log.w("TAG", "Failed to read value.", databaseError.toException());
             }
         });

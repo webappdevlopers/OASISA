@@ -42,9 +42,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.logging.type.LogSeverity;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.webapp.oasis.Admin.AddTechnicianActivity;
 import com.webapp.oasis.BuildConfig;
-import com.webapp.oasis.Customer.AddComplaintActivity;
 import com.webapp.oasis.R;
 import com.webapp.oasis.databinding.FragmentEditTechnicianBinding;
 
@@ -206,13 +204,13 @@ public class EditTechnician extends AppCompatActivity {
                 } else if (fragmentEditTechnicianBinding.generatePassword.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter Password for Technician Login", Toast.LENGTH_LONG).show();
                 } else {
-                    add_technician();
+                    edit_technician();
                 }
             }
         });
     }
 
-    public void add_technician() {
+    public void edit_technician() {
         final ProgressDialog showMe = new ProgressDialog(EditTechnician.this);
         showMe.setMessage("Please wait");
         showMe.setCancelable(true);
@@ -227,6 +225,7 @@ public class EditTechnician extends AppCompatActivity {
         data.put("License", this.licenceImageurl);
         data.put("Technician Password", fragmentEditTechnicianBinding.generatePassword.getText().toString());
         data.put("Technician ID", technicianId);
+        data.put("isDelete", "false");
 
         myRef.child(technicianId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(Task<Void> task) {
