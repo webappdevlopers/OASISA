@@ -36,7 +36,6 @@ public class TechnicianProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
 
-
         SessionManager sessionManager = new SessionManager(getActivity());
         this.session = sessionManager;
         HashMap<String, String> users = sessionManager.getUserDetails();

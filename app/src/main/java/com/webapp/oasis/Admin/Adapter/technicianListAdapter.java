@@ -10,15 +10,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.webapp.oasis.Admin.technician.EditTechnician;
 import com.webapp.oasis.Customer.See_Full_Image_F;
 import com.webapp.oasis.Model.AgentListModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
+
 import java.util.List;
 
 public class technicianListAdapter extends RecyclerView.Adapter<technicianListAdapter.ViewHolder> {
@@ -72,9 +76,32 @@ public class technicianListAdapter extends RecyclerView.Adapter<technicianListAd
                         intent.putExtra("imageurl", user_details.getLicense());
                         mContext.startActivity(intent);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
+            }
+        });
+        holder.deletetechnician.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.edittechnician.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, EditTechnician.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("name", user_details.getName());
+                intent.putExtra("mobile", user_details.getMobile());
+                intent.putExtra("email", user_details.getEmail());
+                intent.putExtra("adhaarcard", user_details.getAdhaarCard());
+                intent.putExtra("license", user_details.getLicense());
+                intent.putExtra("generated_password", user_details.getTechnician_Password());
+                intent.putExtra("techician_id", user_details.getTechnician_id());
+
+                mContext.startActivity(intent);
+
             }
         });
         holder.ProfilePicture.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +115,7 @@ public class technicianListAdapter extends RecyclerView.Adapter<technicianListAd
                         intent.putExtra("imageurl", user_details.getAdhaarCard());
                         mContext.startActivity(intent);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -101,7 +128,7 @@ public class technicianListAdapter extends RecyclerView.Adapter<technicianListAd
         TextView email;
         CircularImageView licence;
         TextView mobile;
-        TextView name;
+        TextView name, edittechnician, deletetechnician;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +138,8 @@ public class technicianListAdapter extends RecyclerView.Adapter<technicianListAd
             this.email = (TextView) itemView.findViewById(R.id.email);
             this.ProfilePicture = (CircularImageView) itemView.findViewById(R.id.ProfilePicture);
             this.licence = (CircularImageView) itemView.findViewById(R.id.licence);
+            edittechnician = itemView.findViewById(R.id.edittechnician);
+            deletetechnician = itemView.findViewById(R.id.deletetechnician);
         }
     }
 }

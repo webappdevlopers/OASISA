@@ -71,6 +71,10 @@
             android:name="com.webapp.oasis.Wallet.WalletEmptyActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.webapp.oasis.Admin.technician.EditTechnician"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.webapp.oasis.Wallet.WalletDriverActivity"
             android:screenOrientation="portrait" />
         <activity

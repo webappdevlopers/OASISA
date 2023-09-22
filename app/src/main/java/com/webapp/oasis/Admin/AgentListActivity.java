@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,27 +15,16 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.webapp.oasis.Admin.Adapter.AgentListAdapter;
 import com.webapp.oasis.Model.AgentListModel;
 import com.webapp.oasis.R;
-import com.webapp.oasis.Utilities.Config;
 import com.webapp.oasis.Utilities.SessionManager;
 
 public class AgentListActivity extends AppCompatActivity {
@@ -56,7 +43,7 @@ public class AgentListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agent_list);
+        setContentView(R.layout.activity_technician_list);
 
         session = new SessionManager(getApplicationContext());
         final HashMap<String, String> users = session.getUserDetails();

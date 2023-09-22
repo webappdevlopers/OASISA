@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +24,12 @@ import com.webapp.oasis.Admin.Adapter.technicianListAdapter;
 import com.webapp.oasis.Model.AgentListModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class TechnicianListActivity extends AppCompatActivity {
-    ImageView back;
 
     /* renamed from: dm */
     ArrayList<AgentListModel> f20dm = new ArrayList<>();
@@ -42,17 +45,18 @@ public class TechnicianListActivity extends AppCompatActivity {
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_agent_list);
+        setContentView((int) R.layout.activity_technician_list);
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
         HashMap<String, String> users = sessionManager.getUserDetails();
         this.user_id = users.get(SessionManager.KEY_TecnicianID);
         this.hash = users.get(SessionManager.KEY_HASH);
         ImageView imageView = (ImageView) findViewById(R.id.back);
-        this.back = imageView;
         imageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                TechnicianListActivity.this.onBackPressed();
+
+                onBackPressed();
+
             }
         });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.itemlistrecycler);
@@ -104,6 +108,7 @@ public class TechnicianListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
     }

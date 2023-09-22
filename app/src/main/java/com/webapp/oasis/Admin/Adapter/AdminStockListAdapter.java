@@ -99,7 +99,7 @@ public class AdminStockListAdapter extends RecyclerView.Adapter<AdminStockListAd
         holder.update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminStockListAdapter.this.context, AdminUpdateItemDetailsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("name", user_details.getItemName());
                 intent.putExtra("brandname", user_details.getBrandName());
                 intent.putExtra(DatabaseHelper.COL_3, user_details.getQty());
