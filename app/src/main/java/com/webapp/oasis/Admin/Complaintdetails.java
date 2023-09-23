@@ -112,52 +112,54 @@ public class Complaintdetails extends AppCompatActivity {
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.stopScroll();
+try {
+    final ProgressDialog showMe = new ProgressDialog(this);
+    showMe.setMessage("Please wait");
+    showMe.setCancelable(true);
+    showMe.setCanceledOnTouchOutside(false);
+    showMe.show();
+    String ItemList1 = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
+            .child(getIntent().getStringExtra("CustomerId"))
+            .child(getIntent().getStringExtra("ComplaintId"))
+            .child("ItemsList").toString();
+    Log.d("ItemList1", ItemList1.toString());
+    FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
+            .child(getIntent().getStringExtra("CustomerId"))
+            .child(getIntent().getStringExtra("ComplaintId"))
+            .child("ItemsList").addValueEventListener(new ValueEventListener() {
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            Log.d("dataSnapshot1", dataSnapshot.toString());
+            if (dataSnapshot.exists()) {
+                Log.d("dataSnapshot", dataSnapshot.toString());
+                Complaintdetails.this.f18dm.clear();
+                for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
+                    Log.d("itemSnapshot", itemSnapshot.toString());
+                    String itemName = (String) itemSnapshot.child("itemName").getValue(String.class);
+                    String brandName = (String) itemSnapshot.child("brandName").getValue(String.class);
+                    String qty = (String) itemSnapshot.child("qty").getValue(String.class);
+                    String price = (String) itemSnapshot.child("price").getValue(String.class);
+                    Complaintdetails.this.f18dm.add(new AdminItemListModel(itemName, brandName, qty, price, qty, (String) itemSnapshot.child("itemID").getValue(String.class)));
+                    Complaintdetails complaintdetails = Complaintdetails.this;
+                    myOrderAdapter = new BillSelectedItemListAdapter(Complaintdetails.this, Complaintdetails.this.f18dm);
+                    mRecyclerView.setAdapter(Complaintdetails.this.myOrderAdapter);
+                    myOrderAdapter.notifyDataSetChanged();
 
-        final ProgressDialog showMe = new ProgressDialog(this);
-        showMe.setMessage("Please wait");
-        showMe.setCancelable(true);
-        showMe.setCanceledOnTouchOutside(false);
-        showMe.show();
-        String ItemList1 = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
-                .child(getIntent().getStringExtra("CustomerId"))
-                .child(getIntent().getStringExtra("ComplaintId"))
-                .child("ItemsList").toString();
-        Log.d("ItemList1", ItemList1.toString());
-        FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
-                .child(getIntent().getStringExtra("CustomerId"))
-                .child(getIntent().getStringExtra("ComplaintId"))
-                .child("ItemsList").addValueEventListener(new ValueEventListener() {
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.d("dataSnapshot1", dataSnapshot.toString());
-                        if (dataSnapshot.exists()) {
-                            Log.d("dataSnapshot", dataSnapshot.toString());
-                            Complaintdetails.this.f18dm.clear();
-                            for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-                                Log.d("itemSnapshot", itemSnapshot.toString());
-                                String itemName = (String) itemSnapshot.child("itemName").getValue(String.class);
-                                String brandName = (String) itemSnapshot.child("brandName").getValue(String.class);
-                                String qty = (String) itemSnapshot.child("qty").getValue(String.class);
-                                String price = (String) itemSnapshot.child("price").getValue(String.class);
-                                Complaintdetails.this.f18dm.add(new AdminItemListModel(itemName, brandName, qty, price, qty, (String) itemSnapshot.child("itemID").getValue(String.class)));
-                                Complaintdetails complaintdetails = Complaintdetails.this;
-                                myOrderAdapter = new BillSelectedItemListAdapter(Complaintdetails.this, Complaintdetails.this.f18dm);
-                                mRecyclerView.setAdapter(Complaintdetails.this.myOrderAdapter);
-                                myOrderAdapter.notifyDataSetChanged();
+                    Log.d("TAG", "Item Name: " + itemName + ", Brand Name: " + brandName + ", Qty: " + qty + ", Price: " + price);
+                    showMe.dismiss();
+                }
+                return;
+            } else {
+                Log.d("TAGElse", "NotExists");
+            }
+            showMe.dismiss();
+        }
 
-                                Log.d("TAG", "Item Name: " + itemName + ", Brand Name: " + brandName + ", Qty: " + qty + ", Price: " + price);
-                                showMe.dismiss();
-                            }
-                            return;
-                        } else {
-                            Log.d("TAGElse", "NotExists");
-                        }
-                        showMe.dismiss();
-                    }
+        public void onCancelled(DatabaseError databaseError) {
+            Log.w("TAG", "Failed to read value.", databaseError.toException());
+        }
+    });
+}catch (Exception e){}
 
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
 
         Intent intent = getIntent();
 //        String user_details1= intent.getStringExtra("mylist");
@@ -454,39 +456,40 @@ public class Complaintdetails extends AppCompatActivity {
     }
 
     private void getTechnicianDetails() {
-        int secondsDelayed = 1;
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                final ProgressDialog showMe1 = new ProgressDialog(Complaintdetails.this);
-                showMe1.setMessage("Please wait");
-                showMe1.setCancelable(true);
-                showMe1.setCanceledOnTouchOutside(false);
-                showMe1.show();
-                FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Techinician/TechinicianDetails").addValueEventListener(new ValueEventListener() {
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
-                            while (it.hasNext()) {
-                                DataSnapshot itemSnapshot = it.next();
-                                AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class) , (String) itemSnapshot.child("isDelete").getValue(String.class));
-                                if (agentListModel2.getTechnician_id().equals(technicianId)) {
+        try {
+            int secondsDelayed = 1;
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    final ProgressDialog showMe1 = new ProgressDialog(Complaintdetails.this);
+                    showMe1.setMessage("Please wait");
+                    showMe1.setCancelable(true);
+                    showMe1.setCanceledOnTouchOutside(false);
+                    showMe1.show();
+                    FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Techinician/TechinicianDetails").addValueEventListener(new ValueEventListener() {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                while (it.hasNext()) {
+                                    DataSnapshot itemSnapshot = it.next();
+                                    AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class) , (String) itemSnapshot.child("isDelete").getValue(String.class));
+                                    if (agentListModel2.getTechnician_id().equals(technicianId)) {
 
-                                    Complaintdetails.this.binding.technicianname.setText(agentListModel2.getName());
-                                    Complaintdetails.this.binding.techniciannumber.setText(agentListModel2.getMobile());
+                                        Complaintdetails.this.binding.technicianname.setText(agentListModel2.getName());
+                                        Complaintdetails.this.binding.techniciannumber.setText(agentListModel2.getMobile());
+                                    }
+                                    showMe1.dismiss();
                                 }
-                                showMe1.dismiss();
+                                return;
                             }
-                            return;
+                            showMe1.dismiss();
                         }
-                        showMe1.dismiss();
-                    }
-
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
-            }
-        }, secondsDelayed * 2000);
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("TAG", "Failed to read value.", databaseError.toException());
+                        }
+                    });
+                }
+            }, secondsDelayed * 2000);
+        }catch (Exception e){}
     }
 
     @Override

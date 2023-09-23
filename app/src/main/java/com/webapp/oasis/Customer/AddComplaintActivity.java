@@ -184,7 +184,9 @@ public class AddComplaintActivity extends AppCompatActivity {
                             DatabaseReference myRef = database.getReference("Customer/Complaint");
                             Map<String, Object> data = new HashMap<>();
                             FirebaseDatabase firebaseDatabase = database;
-                            data.put("Complaint", AddComplaintActivity.this.binding.complaintEt.getText().toString());
+                            data.put("Complaint", "Complaint :"+AddComplaintActivity.this.binding.complaintEt.getText().toString()+
+                                    "\nAddress : "+AddComplaintActivity.this.binding.address.getText().toString()+
+                                    "\nNumber : "+ AddComplaintActivity.this.binding.mobilenumber.getText().toString());
                             data.put("Service", AddComplaintActivity.this.spinner_select_service.getSelectedItem().toString());
                             data.put("Status", "Pending");
                             data.put(HttpHeaders.DATE, currentDate);
@@ -240,7 +242,9 @@ public class AddComplaintActivity extends AppCompatActivity {
                         DatabaseReference myRef2 = database2.getReference("Customer/Complaint");
                         Map<String, Object> data2 = new HashMap<>();
                         FirebaseDatabase firebaseDatabase2 = database2;
-                        data2.put("Complaint", AddComplaintActivity.this.binding.complaintEt.getText().toString());
+                        data2.put("Complaint", "Complaint :"+AddComplaintActivity.this.binding.complaintEt.getText().toString()+
+                                "\nAddress : "+AddComplaintActivity.this.binding.address.getText().toString()+
+                                "\nNumber : "+ AddComplaintActivity.this.binding.mobilenumber.getText().toString());
                         data2.put("Service", AddComplaintActivity.this.spinner_select_service.getSelectedItem().toString());
                         data2.put("Status", "Pending");
                         data2.put(HttpHeaders.DATE, currentDate2);

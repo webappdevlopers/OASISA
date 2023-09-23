@@ -92,6 +92,7 @@
                             android:id="@+id/customer_mobile_no"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textIsSelectable="true"
                             android:text="" />
                     </LinearLayout>
 
@@ -133,6 +134,7 @@
                         android:id="@+id/complaint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textIsSelectable="true"
                         android:text="Curently ro machine is not working some time its wokirng hwo ia cna solve this plz help me in this" />
 
                     <LinearLayout

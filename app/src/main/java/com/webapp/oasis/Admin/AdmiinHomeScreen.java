@@ -1,16 +1,25 @@
 package com.webapp.oasis.Admin;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +28,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.common.internal.ImagesContract;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.Admin.Map.MapsActivity;
 import com.webapp.oasis.Donation.DonationActivity;
 import com.webapp.oasis.R;
+import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.Utilities.SessionManager;
 import java.util.HashMap;
+
+import io.reactivex.annotations.NonNull;
 
 public class AdmiinHomeScreen extends AppCompatActivity implements ActionBar.TabListener {
     DrawerLayout Drawer;
@@ -54,7 +71,7 @@ public class AdmiinHomeScreen extends AppCompatActivity implements ActionBar.Tab
         this.role = users.get(SessionManager.KEY_ADMIN_ROLE);
         TextView textView = (TextView) findViewById(R.id.tvdemo);
         this.tvdemo = textView;
-        rllogout=findViewById(R.id.rllogout);
+        rllogout = findViewById(R.id.rllogout);
         textView.setText("Hello, " + users.get("name"));
         Log.d("role", this.role);
         this.rlnotification = (RelativeLayout) findViewById(R.id.rlnotification);
@@ -249,11 +266,10 @@ public class AdmiinHomeScreen extends AppCompatActivity implements ActionBar.Tab
             }
         });
     }
-
     public void onBackPressed() {
         Intent a = new Intent("android.intent.action.MAIN");
         a.addCategory("android.intent.category.HOME");
-        a.setFlags(268435456);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(a);
         super.onBackPressed();
     }

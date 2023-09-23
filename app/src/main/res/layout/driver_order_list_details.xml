@@ -30,19 +30,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+<!--                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibri"
                     android:text="Complaint : "
                     android:textColor="#656571"
-                    android:textSize="14dp" />
+                    android:textSize="14dp" />-->
 
                 <TextView
                     android:id="@+id/complaint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibri"
+                    android:textIsSelectable="true"
                     android:text="123"
                     android:textColor="#61606c"
                     android:textSize="14dp" />
