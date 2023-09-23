@@ -238,7 +238,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                 String value = snapshot.getValue(String.class);
 
                 Toast.makeText(LoginFirstScreen.this, "" + value, Toast.LENGTH_LONG).show();
-            }
+            } 
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
