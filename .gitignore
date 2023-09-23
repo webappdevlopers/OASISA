@@ -1,6 +1,51 @@
-# Project exclude paths
-/.gradle/
-/app/build/
-/app/build/intermediates/javac/debug/classes/
-/app/build/intermediates/javac/debugUnitTest/classes/
-/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml
+#built application files
+*.apk
+*.ap_
+*.aab
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+.navigation
+captures/
+output.json
+
+/local.properties
+/.idea
+/.idea/workspace.xml
+/.idea/libraries
+/build
+/captures
+.externalNativeBuild
+/app/release/output.json
+/app/uat
+/app/qa
+/app/prod
+/debug
+
+
+#NDK
+obj/
+.externalNativeBuild

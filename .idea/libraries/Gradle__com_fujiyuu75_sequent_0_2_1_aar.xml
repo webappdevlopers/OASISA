@@ -1,8 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.fujiyuu75:sequent:0.2.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0200ea584c5d7b7c7341ee7540b65383/jetified-sequent-0.2.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0200ea584c5d7b7c7341ee7540b65383/jetified-sequent-0.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/496e5a0c41e13c28d4fcec6fa678de61/jetified-sequent-0.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/496e5a0c41e13c28d4fcec6fa678de61/jetified-sequent-0.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/496e5a0c41e13c28d4fcec6fa678de61/jetified-sequent-0.2.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fujiyuu75/sequent/0.2.1/5a8362be16030fc21191208ac0c00d5b02cef947/sequent-0.2.1-javadoc.jar!/" />

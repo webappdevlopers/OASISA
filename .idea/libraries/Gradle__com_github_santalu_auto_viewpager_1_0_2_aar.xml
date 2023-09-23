@@ -1,8 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.santalu:auto-viewpager:1.0.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c68766d7839a5e3eccb49e4a143b2e2/jetified-auto-viewpager-1.0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c68766d7839a5e3eccb49e4a143b2e2/jetified-auto-viewpager-1.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/998ca6a25ee8bf87aa720144792d55d9/jetified-auto-viewpager-1.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/998ca6a25ee8bf87aa720144792d55d9/jetified-auto-viewpager-1.0.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/998ca6a25ee8bf87aa720144792d55d9/jetified-auto-viewpager-1.0.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
