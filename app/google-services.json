@@ -1,8 +1,8 @@
 {
   "project_info": {
     "project_number": "820309156449",
+    "firebase_url": "https://oasisro-default-rtdb.firebaseio.com",
     "project_id": "oasisro",
-    "firebase_url": "https://oasis-a3b2c-default-rtdb.firebaseio.com",
     "storage_bucket": "oasisro.appspot.com"
   },
   "client": [
@@ -15,7 +15,31 @@
       },
       "oauth_client": [
         {
-          "client_id": "820309156449-sdg6qhkcsho8l6n25uvos5k0nv1kr8cp.apps.googleusercontent.com",
+          "client_id": "820309156449-0c5psqmn9pgvce4usgjd9g1vstnv04vf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webapp.oasis",
+            "certificate_hash": "f6e6800945a6ad8c370b9bf6a1650f605c3c0105"
+          }
+        },
+        {
+          "client_id": "820309156449-cem0gpcqfuutsrohau3853513ounv2b4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webapp.oasis",
+            "certificate_hash": "a10d970463295778957bb04290297350a734d278"
+          }
+        },
+        {
+          "client_id": "820309156449-mv1n2judtso5j8ecfj1f6m1392to7p08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webapp.oasis",
+            "certificate_hash": "61bf37e911fee9961a877a87a68e055a49bfcc8b"
+          }
+        },
+        {
+          "client_id": "820309156449-fbun728i1pi7n3vi9b9bgcmul3l5m6o2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,7 +52,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "820309156449-sdg6qhkcsho8l6n25uvos5k0nv1kr8cp.apps.googleusercontent.com",
+              "client_id": "820309156449-fbun728i1pi7n3vi9b9bgcmul3l5m6o2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

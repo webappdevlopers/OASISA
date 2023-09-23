@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +15,10 @@ import com.webapp.oasis.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import javax.annotation.Nullable;
+
+import io.reactivex.annotations.NonNull;
 
 public class BannerAdapter extends PagerAdapter {
 

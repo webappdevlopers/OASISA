@@ -1,5 +1,8 @@
 package com.webapp.oasis.Model;
 
+import com.google.errorprone.annotations.Keep;
+
+@Keep
 public class BannerPojo {
 
     private String BannerImage;

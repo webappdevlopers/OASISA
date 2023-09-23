@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.exifinterface.media.ExifInterface;
@@ -38,6 +38,7 @@ import com.webapp.oasis.Admin.AdminHomePage;
 import com.webapp.oasis.Customer.CustomerHomeActivity;
 import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.Model.BannerPojo;
+import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.Technician.technicianHomeActivity;
 import com.webapp.oasis.Utilities.SessionManager;
 
@@ -45,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.reactivex.annotations.NonNull;
 import me.relex.circleindicator.CircleIndicator;
 
 public class LoginFirstScreen extends AppCompatActivity {
@@ -76,6 +78,8 @@ public class LoginFirstScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_login_first_screen);
         startAutoScrollTimer();
+
+        Toast.makeText(LoginFirstScreen.this, "Welcome To OASIS GLOBE App", Toast.LENGTH_LONG).show();
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
@@ -170,6 +174,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                 bannerAdapter = new BannerAdapter(LoginFirstScreen.this, bannerArraylist);
 
                 viewPager.setAdapter(bannerAdapter);
+                viewPager.setDuration(99999999);
                 indicator.setViewPager(viewPager);
             }
 
