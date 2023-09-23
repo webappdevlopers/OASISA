@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 
 import com.webapp.oasis.Model.AdminItemListModel;
 
@@ -31,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context mContext;
 
-    public DatabaseHelper(@Nullable Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
         mContext = context;

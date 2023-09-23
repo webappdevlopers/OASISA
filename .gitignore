@@ -3,3 +3,4 @@
 /app/build/
 /app/build/intermediates/javac/debug/classes/
 /app/build/intermediates/javac/debugUnitTest/classes/
+/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml

@@ -1,6 +1,6 @@
 package com.webapp.oasis.Model;
 
-import androidx.annotation.Keep;
+import com.google.errorprone.annotations.Keep;
 
 @Keep
 public class BannerPojo {

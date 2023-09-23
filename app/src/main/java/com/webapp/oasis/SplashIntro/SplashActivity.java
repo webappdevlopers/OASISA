@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.LoginActivity;
 import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.R;
+
+import io.reactivex.annotations.NonNull;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -40,54 +41,48 @@ public class SplashActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-//        int secondsDelayed = 1;
-//        new Handler().postDelayed(new Runnable() {
-//            public void run() {
-//                startActivity(new Intent(SplashActivity.this, LoginFirstScreen.class));
-//                finish();
-//            }
-//        }, secondsDelayed * 2000);
-
-        handler = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
-                DatabaseReference mDbRef = mDatabase.getReference("Enable");
-
-                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(final DataSnapshot dataSnapshot) {
-
-                        String value = (String) dataSnapshot.getValue();
-
-                        if (value.equals("yes") || value == "Yes") {
-                            startActivity(new Intent(SplashActivity.this, LoginFirstScreen.class));
-//                                startActivity(new Intent(SplashActivity.this, HomeScreen.class));
-                            finish();
-                        } else if (value.equals("maintenance") || value == "Maintenance") {
-                            Toast.makeText(SplashActivity.this, "Server is in Maintenance\nKindly contact your developer", Toast.LENGTH_LONG).show();
-                        } else if (value.equals("developercharges") || value == "Developercharges") {
-                            getdata();
-                        } else if (value.equals("server") || value == "Server") {
-                            Toast.makeText(SplashActivity.this, "Server Plan is Expired\nKindly renew your server", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+        int secondsDelayed = 1;
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, LoginFirstScreen.class));
+                finish();
             }
-        };
+        }, secondsDelayed * 1500);
 
-        handler.sendEmptyMessage(0);
-        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected() == true) {
-
-        } else {
-            NetworkDialog();
-        }
+//        handler = new Handler() {
+//            public void handleMessage(android.os.Message msg) {
+//                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+//                DatabaseReference mDbRef = mDatabase.getReference("PlayStoreEnable");
+//
+//                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(final DataSnapshot dataSnapshot) {
+//                        String value = (String) dataSnapshot.getValue();
+//                        if (value.equals("yes") || value == "Yes") {
+//                            startActivity(new Intent(SplashActivity.this, LoginFirstScreen.class));
+//                            finish();
+//                        } else if (value.equals("maintenance") || value == "Maintenance") {
+//                            Toast.makeText(SplashActivity.this, "Server is in Maintenance\nKindly contact your developer", Toast.LENGTH_LONG).show();
+//                        } else if (value.equals("developercharges") || value == "Developercharges") {
+//                            getdata();
+//                        } else if (value.equals("server") || value == "Server") {
+//                            Toast.makeText(SplashActivity.this, "Server Plan is Expired\nKindly renew your server", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//                        Toast.makeText(SplashActivity.this, "" + error, Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
+//        };
+//        handler.sendEmptyMessage(0);
+//        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+//        if (networkInfo != null && networkInfo.isConnected() == true) {
+//        } else {
+//            NetworkDialog();
+//        }
     }
 
     private void NetworkDialog() {
@@ -99,7 +94,7 @@ public class SplashActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SplashActivity.this,SplashActivity.class);
+                Intent intent = new Intent(SplashActivity.this, SplashActivity.class);
                 startActivity(intent);
                 finish();
                 dialogs.dismiss();
