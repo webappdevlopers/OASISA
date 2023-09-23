@@ -3,17 +3,20 @@ package com.webapp.oasis;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.exifinterface.media.ExifInterface;
@@ -38,6 +41,7 @@ import com.webapp.oasis.Admin.AdminHomePage;
 import com.webapp.oasis.Customer.CustomerHomeActivity;
 import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.Model.BannerPojo;
+import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.Technician.technicianHomeActivity;
 import com.webapp.oasis.Utilities.SessionManager;
 
@@ -45,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.reactivex.annotations.NonNull;
 import me.relex.circleindicator.CircleIndicator;
 
 public class LoginFirstScreen extends AppCompatActivity {
@@ -76,6 +81,8 @@ public class LoginFirstScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_login_first_screen);
         startAutoScrollTimer();
+
+        Toast.makeText(LoginFirstScreen.this, "Welcome To OASIS GLOBE App", Toast.LENGTH_LONG).show();
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
@@ -153,8 +160,93 @@ public class LoginFirstScreen extends AppCompatActivity {
                 LoginFirstScreen.this.startActivity(intent);
             }
         });
+
+        handler = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+                DatabaseReference mDbRef = mDatabase.getReference("Enable");
+
+                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+
+                        String value = (String) dataSnapshot.getValue();
+
+                        if (value.equals("yes") || value == "Yes") {
+
+                        } else if (value.equals("maintenance") || value == "Maintenance") {
+                            Toast.makeText(LoginFirstScreen.this, "Server is in Maintenance\nKindly contact your developer", Toast.LENGTH_LONG).show();
+                        } else if (value.equals("developercharges") || value == "Developercharges") {
+                            getdata();
+                        } else if (value.equals("server") || value == "Server") {
+
+                            Toast.makeText(LoginFirstScreen.this, "Server Plan is Expired\nKindly renew your server", Toast.LENGTH_LONG).show();
+
+                            Intent a = new Intent("android.intent.action.MAIN");
+                            a.addCategory("android.intent.category.HOME");
+                            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(a);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        };
+
+        handler.sendEmptyMessage(0);
+        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected() == true) {
+
+        } else {
+            NetworkDialog();
+        }
     }
 
+    private void NetworkDialog() {
+        final Dialog dialogs = new Dialog(LoginFirstScreen.this);
+        dialogs.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogs.setContentView(R.layout.networkdialog);
+        dialogs.setCanceledOnTouchOutside(false);
+        Button done = (Button) dialogs.findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginFirstScreen.this,LoginFirstScreen.class);
+                startActivity(intent);
+                finish();
+                dialogs.dismiss();
+            }
+        });
+        dialogs.show();
+    }
+
+    private void getdata() {
+
+        // calling add value event listener method
+        // for getting the values from database.
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+        DatabaseReference mDbRef = mDatabase.getReference("msg");
+
+        mDbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+
+                Toast.makeText(LoginFirstScreen.this, "" + value, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(LoginFirstScreen.this, "Fail to get data.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private Handler handler = new Handler();
     BannerAdapter bannerAdapter;
     private void showBannerOnViewPager() {
         databaseReferenceForBanner.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -170,6 +262,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                 bannerAdapter = new BannerAdapter(LoginFirstScreen.this, bannerArraylist);
 
                 viewPager.setAdapter(bannerAdapter);
+                viewPager.setDuration(99999999);
                 indicator.setViewPager(viewPager);
             }
 

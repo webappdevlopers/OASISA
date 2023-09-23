@@ -1,7 +1,9 @@
 package com.webapp.oasis.Admin.Adapter;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -96,7 +99,18 @@ public class technicianListAdapter extends RecyclerView.Adapter<technicianListAd
         holder.deletetechnician.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edit_technician(user_details.getTechnician_id());
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("Are you sure you want to Delete?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        edit_technician(user_details.getTechnician_id());
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
             }
         });
         holder.edittechnician.setOnClickListener(new View.OnClickListener() {

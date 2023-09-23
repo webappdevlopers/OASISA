@@ -94,20 +94,20 @@
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal">
 
-                <TextView
+          <!--      <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibri"
                     android:text="Complaint : "
                     android:textColor="#656571"
-                    android:textSize="14dp" />
+                    android:textSize="14dp" />-->
 
                 <TextView
                     android:id="@+id/complaint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="80dp"
                     android:fontFamily="@font/calibri"
+                    android:textIsSelectable="true"
                     android:textColor="#61606c"
                     android:textSize="13dp" />
             </LinearLayout>

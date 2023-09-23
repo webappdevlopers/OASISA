@@ -20,11 +20,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.Admin.Adapter.AdminDriverListAdapter;
+import com.webapp.oasis.Customer.ComplaintStatusActivity;
 import com.webapp.oasis.Model.AgentDriverOrderListModel;
+import com.webapp.oasis.Model.ComplaintStatusModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 import com.webapp.oasis.databinding.FragmentComplaintsBinding;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -123,6 +127,13 @@ public class ComplaintsFragment extends Fragment {
                                     ComplaintsFragment complaintsFragment = ComplaintsFragment.this;
                                     String str4 = complaint;
                                     String str5 = image;
+
+                                    Collections.sort(ComplaintsFragment.this.f21dm, new Comparator<AgentDriverOrderListModel>() {
+                                        @Override
+                                        public int compare(AgentDriverOrderListModel t1, AgentDriverOrderListModel t2) {
+                                            return (t2.getDate()+t2.getTiming()).compareTo(t1.getDate()+t1.getTiming());
+                                        }
+                                    });
                                     complaintsFragment.myOrderAdapter = new AdminDriverListAdapter(complaintsFragment.getActivity(), ComplaintsFragment.this.f21dm);
                                     ComplaintsFragment.this.mRecyclerView.setAdapter(ComplaintsFragment.this.myOrderAdapter);
                                     ComplaintsFragment.this.myOrderAdapter.notifyDataSetChanged();

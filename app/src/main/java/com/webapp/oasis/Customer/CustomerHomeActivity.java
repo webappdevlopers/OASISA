@@ -1,24 +1,30 @@
 package com.webapp.oasis.Customer;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +50,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.webapp.oasis.Admin.AdmiinHomeScreen;
 import com.webapp.oasis.Donation.DonationActivity;
 import com.webapp.oasis.LoginActivity;
 import com.webapp.oasis.LoginFirstScreen;
@@ -52,6 +59,8 @@ import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.Utilities.SessionManager;
 
 import java.util.HashMap;
+
+import io.reactivex.annotations.NonNull;
 
 public class CustomerHomeActivity extends AppCompatActivity implements LocationListener, ActionBar.TabListener {
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
@@ -277,7 +286,6 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
                         builder.setMessage("Are you sure you want to logout?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 CustomerHomeActivity.this.session.logoutUser();
-                                CustomerHomeActivity.this.finish();
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -306,6 +314,77 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
                     default:
                         return true;
                 }
+            }
+        });
+
+        handler = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+                DatabaseReference mDbRef = mDatabase.getReference("Enable");
+                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+                        String value = (String) dataSnapshot.getValue();
+                        if (value.equals("yes") || value == "Yes") {
+                        } else if (value.equals("maintenance") || value == "Maintenance") {
+                            Toast.makeText(CustomerHomeActivity.this, "Server is in Maintenance\nKindly contact your developer", Toast.LENGTH_LONG).show();
+                        } else if (value.equals("developercharges") || value == "Developercharges") {
+                            getdata();
+                        } else if (value.equals("server") || value == "Server") {
+                            session.logoutUser();
+                            Toast.makeText(CustomerHomeActivity.this, "Server Plan is Expired\nKindly renew your server", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+            }
+        };
+
+        handler.sendEmptyMessage(0);
+        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected() == true) {
+
+        } else {
+            NetworkDialog();
+        }
+    }
+    private Handler handler = new Handler();
+
+    private void NetworkDialog() {
+        final Dialog dialogs = new Dialog(CustomerHomeActivity.this);
+        dialogs.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogs.setContentView(R.layout.networkdialog);
+        dialogs.setCanceledOnTouchOutside(false);
+        Button done = (Button) dialogs.findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerHomeActivity.this,CustomerHomeActivity.class);
+                startActivity(intent);
+                finish();
+                dialogs.dismiss();
+            }
+        });
+        dialogs.show();
+    }
+
+    private void getdata() {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+        DatabaseReference mDbRef = mDatabase.getReference("msg");
+
+        mDbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                Toast.makeText(CustomerHomeActivity.this, "" + value, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(CustomerHomeActivity.this, "Fail to get data.", Toast.LENGTH_LONG).show();
             }
         });
     }

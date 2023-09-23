@@ -252,6 +252,7 @@ public class EditTechnician extends AppCompatActivity {
 //                    AddTechnicianActivity.this.generate_password.setText("");
 
                     showMe.dismiss();
+                    onBackPressed();
                 }
             }
         });
@@ -266,28 +267,30 @@ public class EditTechnician extends AppCompatActivity {
             showMe.show();
             StorageReference child = this.storageReference.child("Techinician");
             final StorageReference ref = child.child("images" + UUID.randomUUID().toString());
-            ref.putFile(filePath).addOnSuccessListener((OnSuccessListener) new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        public void onSuccess(Uri downloadUri) {
-                            showMe.dismiss();
-                            licenceImageurl = downloadUri.toString();
-                        }
-                    });
-                }
-            }).addOnFailureListener((OnFailureListener) new OnFailureListener() {
-                public void onFailure(Exception e) {
-                    Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), 0).show();
-                }
-            }).addOnProgressListener((OnProgressListener) new OnProgressListener<UploadTask.TaskSnapshot>() {
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double bytesTransferred = (double) taskSnapshot.getBytesTransferred();
-                    Double.isNaN(bytesTransferred);
-                    double totalByteCount = (double) taskSnapshot.getTotalByteCount();
-                    Double.isNaN(totalByteCount);
-                    double d = (bytesTransferred * 100.0d) / totalByteCount;
-                }
-            });
+            try {
+                ref.putFile(filePath).addOnSuccessListener((OnSuccessListener) new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            public void onSuccess(Uri downloadUri) {
+                                showMe.dismiss();
+                                licenceImageurl = downloadUri.toString();
+                            }
+                        });
+                    }
+                }).addOnFailureListener((OnFailureListener) new OnFailureListener() {
+                    public void onFailure(Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), 0).show();
+                    }
+                }).addOnProgressListener((OnProgressListener) new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double bytesTransferred = (double) taskSnapshot.getBytesTransferred();
+                        Double.isNaN(bytesTransferred);
+                        double totalByteCount = (double) taskSnapshot.getTotalByteCount();
+                        Double.isNaN(totalByteCount);
+                        double d = (bytesTransferred * 100.0d) / totalByteCount;
+                    }
+                });
+            }catch (Exception e){}
         } else {
             Toast.makeText(this, "sdfdsfsf", Toast.LENGTH_SHORT).show();
         }
