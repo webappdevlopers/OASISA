@@ -97,6 +97,8 @@ public class SessionManager {
 
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<>();
+        user.put(KEY_AdminID, this.pref.getString(KEY_AdminID, ""));
+
         user.put(AMOUNT, this.pref.getString(AMOUNT, ""));
         user.put(KEY_LoginCode, this.pref.getString(KEY_LoginCode, ""));
         user.put(KEY_TecnicianID, this.pref.getString(KEY_TecnicianID, ""));

@@ -69,7 +69,7 @@ public class ComplaintsFragment extends Fragment {
         this.binding.rllogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ComplaintsFragment.this.getContext());
-                builder.setMessage("Are you sure you want to logout?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setMessage("Are you sure you want to logout ?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ComplaintsFragment.this.session.logoutUser();
                     }

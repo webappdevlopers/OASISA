@@ -172,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String userType;
     String Admin_id;
     String isdelete;
+
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -236,15 +237,51 @@ public class LoginActivity extends AppCompatActivity {
                 if (LoginActivity.this.login_from.equalsIgnoreCase("Super Admin")) {
 
                     if (LoginActivity.this.phonenumber.getText().toString().isEmpty() || LoginActivity.this.phonenumber.length() != 10
-                            || !LoginActivity.this.binding.phonenumber.getText().toString().equals("8888888888")) {
+                    ) {
                         Toast.makeText(LoginActivity.this, "Enter 10 digit Mobile Number", Toast.LENGTH_SHORT).show();
-                    } else if (LoginActivity.this.binding.password.getText().toString().isEmpty() || !LoginActivity.this.binding.password.getText().toString().equals("12345")) {
+                    } else if (LoginActivity.this.binding.password.getText().toString().isEmpty()) {
                         Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
                     } else {
-                        userType = "Super Admin";
-                        LoginActivity.this.session.LoginCode("6");
-                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
-                        LoginActivity.this.finish();
+
+                        FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("SuperAdmin/SuperAdmin Credentials").addValueEventListener(new ValueEventListener() {
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                    while (true) {
+                                        if (!it.hasNext()) {
+                                            break;
+                                        }
+                                        DataSnapshot itemSnapshot = it.next();
+                                        String UserName = (String) itemSnapshot.child("UserName").getValue(String.class);
+                                        String Password = (String) itemSnapshot.child("Password").getValue(String.class);
+                                            Techniciandetails.add(new TechnicianCredentiansModel(UserName, Password));
+                                            if (LoginActivity.this.binding.phonenumber.getText().toString().equalsIgnoreCase(UserName) && LoginActivity.this.binding.password.getText().toString().equalsIgnoreCase(Password)) {
+                                                LoginActivity.this.isInvalid = true;
+                                                break;
+                                            }
+
+                                    }
+                                    if (LoginActivity.this.isInvalid) {
+                                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
+                                        userType = "Super Admin";
+                                        LoginActivity.this.session.LoginCode("6");
+
+                                       // LoginActivity.this.session.createLoginSessionAdmin(Admin_id);
+                                        LoginActivity.this.finish();
+                                        return;
+
+                                    }
+
+                                    Toast.makeText(LoginActivity.this, "Invalid mobile number or password", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                Toast.makeText(LoginActivity.this, "Please Ask Admin to Generate Password", Toast.LENGTH_SHORT).show();
+                            }
+
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.w("TAG", "Failed to read value.", databaseError.toException());
+                            }
+                        });
                     }
 
                 } else if (LoginActivity.this.login_from.equalsIgnoreCase("Admin")) {
@@ -265,22 +302,26 @@ public class LoginActivity extends AppCompatActivity {
                                         String UserName = (String) itemSnapshot.child("UserName").getValue(String.class);
                                         String Password = (String) itemSnapshot.child("Password").getValue(String.class);
                                         Admin_id = (String) itemSnapshot.child("Admin ID").getValue(String.class);
-
+                                        isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                         Techniciandetails.add(new TechnicianCredentiansModel(UserName, Password));
                                         if (LoginActivity.this.binding.phonenumber.getText().toString().equalsIgnoreCase(UserName) && LoginActivity.this.binding.password.getText().toString().equalsIgnoreCase(Password)) {
                                             LoginActivity.this.isInvalid = true;
                                             break;
                                         }
                                     }
-                                    if (LoginActivity.this.isInvalid) {
-                                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
-                                        userType = "Admin";
-                                        LoginActivity.this.session.LoginCode("5");
+                                    if (isdelete.equals("false")) {
+                                        if (LoginActivity.this.isInvalid) {
+                                            LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
+                                            userType = "Admin";
+                                            LoginActivity.this.session.LoginCode("5");
 
-                                        LoginActivity.this.session.createLoginSessionAdmin(Admin_id);
-                                        LoginActivity.this.finish();
-                                        return;
+                                            LoginActivity.this.session.createLoginSessionAdmin(Admin_id);
+                                            LoginActivity.this.finish();
+                                            return;
+                                        }
+
                                     }
+
                                     Toast.makeText(LoginActivity.this, "Invalid mobile number or password", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
@@ -307,7 +348,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String str = (String) itemSnapshot.child("Name").getValue(String.class);
                                     LoginActivity.this.Mobile = (String) itemSnapshot.child("Mobile").getValue(String.class);
                                     LoginActivity.this.Technician_Password = (String) itemSnapshot.child("Technician Password").getValue(String.class);
-                                   isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
+                                    isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                     String str2 = (String) itemSnapshot.child("email").getValue(String.class);
                                     String str3 = (String) itemSnapshot.child("AdhaarCard").getValue(String.class);
                                     String str4 = (String) itemSnapshot.child("License").getValue(String.class);
@@ -319,7 +360,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                if(!isdelete.equals("true")){
+                                if (!isdelete.equals("true")) {
                                     if (LoginActivity.this.isInvalid) {
                                         LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
                                         LoginActivity.this.finish();
