@@ -81,7 +81,7 @@ public class AdminListAdapter extends RecyclerView.Adapter<AdminListAdapter.View
 
     public void onBindViewHolder(ViewHolder holder, int i) {
         final ItemsModel user_details = this.mUser.get(i);
-        holder.name.setText(user_details.getItemName());
+        holder.name.setText(i+1+") Number  : "+user_details.getItemName()+"\n    Password : "+user_details.getBrandName());
         holder.price.setText(user_details.getPrice());
 
         holder.update.setOnClickListener(new View.OnClickListener() {

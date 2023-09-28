@@ -309,18 +309,28 @@ public class LoginActivity extends AppCompatActivity {
                                             break;
                                         }
                                     }
-                                    if (isdelete.equals("false")) {
+                                    try {
+                                        if (isdelete.equals("false")) {
+                                            if (LoginActivity.this.isInvalid) {
+                                                LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
+                                                userType = "Admin";
+                                                LoginActivity.this.session.LoginCode("5");
+                                                LoginActivity.this.session.createLoginSessionAdmin(Admin_id);
+                                                LoginActivity.this.finish();
+                                                return;
+                                            }
+                                        }
+                                    }catch (Exception e){
                                         if (LoginActivity.this.isInvalid) {
                                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, AdminHomePage.class));
                                             userType = "Admin";
                                             LoginActivity.this.session.LoginCode("5");
-
                                             LoginActivity.this.session.createLoginSessionAdmin(Admin_id);
                                             LoginActivity.this.finish();
                                             return;
                                         }
-
                                     }
+
 
                                     Toast.makeText(LoginActivity.this, "Invalid mobile number or password", Toast.LENGTH_SHORT).show();
                                     return;
@@ -360,7 +370,17 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                if (!isdelete.equals("true")) {
+                                try{
+                                    if(!isdelete.equals("true")){
+                                        if (LoginActivity.this.isInvalid) {
+                                            LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
+                                            LoginActivity.this.finish();
+                                            LoginActivity.this.session.LoginCode(ExifInterface.GPS_MEASUREMENT_2D);
+                                            LoginActivity.this.session.createLoginSessionTecnician(LoginActivity.this.Technician_ID);
+                                            return;
+                                        }
+                                    }
+                                }catch (Exception e){
                                     if (LoginActivity.this.isInvalid) {
                                         LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
                                         LoginActivity.this.finish();
@@ -368,7 +388,6 @@ public class LoginActivity extends AppCompatActivity {
                                         LoginActivity.this.session.createLoginSessionTecnician(LoginActivity.this.Technician_ID);
                                         return;
                                     }
-
                                 }
                                 Toast.makeText(LoginActivity.this, "Invalid mobile number or password", Toast.LENGTH_SHORT).show();
                                 return;

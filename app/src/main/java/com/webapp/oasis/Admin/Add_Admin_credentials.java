@@ -68,16 +68,17 @@ public class Add_Admin_credentials extends AppCompatActivity {
                     f16dm.clear();
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                         String isDelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
-                      if(itemSnapshot.child("isDelete").exists()){
-                          if (isDelete.equals("false")) {
-                              f16dm.add(new ItemsModel((String) itemSnapshot.child("UserName").getValue(String.class), (String) itemSnapshot.child("Password").getValue(String.class), (String) itemSnapshot.child("Admin ID").getValue(String.class), (String) null, (String) null));
-
-                          }
-
-                      }else {
-                          f16dm.add(new ItemsModel((String) itemSnapshot.child("UserName").getValue(String.class), (String) itemSnapshot.child("Password").getValue(String.class), (String) itemSnapshot.child("Admin ID").getValue(String.class), (String) null, (String) null));
-
-                      }
+                        try {
+                            if (itemSnapshot.child("isDelete").exists()) {
+                                if (isDelete.equals("false")) {
+                                    f16dm.add(new ItemsModel((String) itemSnapshot.child("UserName").getValue(String.class), (String) itemSnapshot.child("Password").getValue(String.class), (String) itemSnapshot.child("Admin ID").getValue(String.class), (String) null, (String) null));
+                                }
+                            } else {
+                                f16dm.add(new ItemsModel((String) itemSnapshot.child("UserName").getValue(String.class), (String) itemSnapshot.child("Password").getValue(String.class), (String) itemSnapshot.child("Admin ID").getValue(String.class), (String) null, (String) null));
+                            }
+                        }catch (Exception e){
+                            f16dm.add(new ItemsModel((String) itemSnapshot.child("UserName").getValue(String.class), (String) itemSnapshot.child("Password").getValue(String.class), (String) itemSnapshot.child("Admin ID").getValue(String.class), (String) null, (String) null));
+                        }
                         myOrderAdapter = new AdminListAdapter(getApplicationContext(), f16dm);
                         recyclerView.setAdapter(myOrderAdapter);
                         myOrderAdapter.notifyDataSetChanged();

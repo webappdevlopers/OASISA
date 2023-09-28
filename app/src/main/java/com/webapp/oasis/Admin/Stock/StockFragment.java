@@ -48,11 +48,13 @@ public class StockFragment extends Fragment {
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                         String AdminID = itemSnapshot.child("Admin ID").getValue(String.class);
                         String isDelete = itemSnapshot.child("isDelete").getValue(String.class);
-                        if (AdminID.equals(adminId)) {
-                            if (isDelete.equals("true")) {
-                                session.logoutUser();
+                        try {
+                            if (AdminID.equals(adminId)) {
+                                if (isDelete.equals("true")) {
+                                    session.logoutUser();
+                                }
                             }
-                        }
+                        }catch (Exception e){}
                     }
                 }
             }
