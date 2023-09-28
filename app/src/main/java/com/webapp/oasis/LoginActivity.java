@@ -358,7 +358,6 @@ public class LoginActivity extends AppCompatActivity {
                                     String str = (String) itemSnapshot.child("Name").getValue(String.class);
                                     LoginActivity.this.Mobile = (String) itemSnapshot.child("Mobile").getValue(String.class);
                                     LoginActivity.this.Technician_Password = (String) itemSnapshot.child("Technician Password").getValue(String.class);
-                                    isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                     String str2 = (String) itemSnapshot.child("email").getValue(String.class);
                                     String str3 = (String) itemSnapshot.child("AdhaarCard").getValue(String.class);
                                     String str4 = (String) itemSnapshot.child("License").getValue(String.class);
@@ -371,6 +370,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 try{
+                                    isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                     if(!isdelete.equals("true")){
                                         if (LoginActivity.this.isInvalid) {
                                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));

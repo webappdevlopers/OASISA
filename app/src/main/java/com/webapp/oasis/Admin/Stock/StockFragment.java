@@ -46,9 +46,9 @@ public class StockFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-                        String AdminID = itemSnapshot.child("Admin ID").getValue(String.class);
-                        String isDelete = itemSnapshot.child("isDelete").getValue(String.class);
                         try {
+                            String AdminID = itemSnapshot.child("Admin ID").getValue(String.class);
+                            String isDelete = itemSnapshot.child("isDelete").getValue(String.class);
                             if (AdminID.equals(adminId)) {
                                 if (isDelete.equals("true")) {
                                     session.logoutUser();

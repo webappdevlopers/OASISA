@@ -34,10 +34,12 @@ public class SessionManager {
     SharedPreferences pref;
 
     public SessionManager(Context context1) {
-        this.context = context1;
-        SharedPreferences sharedPreferences = context1.getSharedPreferences(Pref_Name, 0);
-        this.pref = sharedPreferences;
-        this.editor = sharedPreferences.edit();
+        try {
+            this.context = context1;
+            SharedPreferences sharedPreferences = context1.getSharedPreferences(Pref_Name, 0);
+            this.pref = sharedPreferences;
+            this.editor = sharedPreferences.edit();
+        }catch (Exception e){}
     }
 
     public void useridsession(String customerId) {

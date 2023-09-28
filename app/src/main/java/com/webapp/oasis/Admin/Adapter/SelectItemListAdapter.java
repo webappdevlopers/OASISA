@@ -115,40 +115,41 @@ public class SelectItemListAdapter extends RecyclerView.Adapter<SelectItemListAd
         holder.imgplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.count = holder.count + 1;
-                holder.txt_val.setText("" + holder.count);
-                holder.totalAmount.setText("" + (holder.count * Integer.parseInt(holder.sellingPrice.getText().toString()))+"");
+                try {
+                    holder.count = holder.count + 1;
+                    holder.txt_val.setText("" + holder.count);
+                    holder.totalAmount.setText("" + (holder.count * Integer.parseInt(holder.sellingPrice.getText().toString()))+"");
 
+                    boolean bol = mydb.hasObject(user_details.getItemID());
 
-                boolean bol = mydb.hasObject(user_details.getItemID());
+                    if (bol == true) {
+                        boolean isInserted = mydb.updateDatas(user_details.getItemID(), user_details.getBrandName(), user_details.getItemName(),
+                                holder.sellingPrice.getText().toString(), user_details.getQty(),holder.txt_val.getText().toString());
 
-                if (bol == true) {
-                    boolean isInserted = mydb.updateDatas(user_details.getItemID(), user_details.getBrandName(), user_details.getItemName(),
-                            holder.sellingPrice.getText().toString(), user_details.getQty(),holder.txt_val.getText().toString());
-
-                    if (isInserted) {
-                        //          Toast.makeText(context, "Data updated", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //         Toast.makeText(context, "Data not updated", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    if (!holder.txt_val.getText().toString().equals("0")) {
-
-                        boolean isInserted = mydb.inertData(user_details.getItemID(), user_details.getBrandName(), user_details.getItemName(),
-                                holder.sellingPrice.getText().toString(), user_details.getQty(), holder.txt_val.getText().toString());
                         if (isInserted) {
-                            //              Toast.makeText(context, "Data inserted", Toast.LENGTH_SHORT).show();
+                            //          Toast.makeText(context, "Data updated", Toast.LENGTH_SHORT).show();
                         } else {
-                            //              Toast.makeText(context, "Data not inserted", Toast.LENGTH_SHORT).show();
+                            //         Toast.makeText(context, "Data not updated", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        if (!holder.txt_val.getText().toString().equals("0")) {
+
+                            boolean isInserted = mydb.inertData(user_details.getItemID(), user_details.getBrandName(), user_details.getItemName(),
+                                    holder.sellingPrice.getText().toString(), user_details.getQty(), holder.txt_val.getText().toString());
+                            if (isInserted) {
+                                //              Toast.makeText(context, "Data inserted", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //              Toast.makeText(context, "Data not inserted", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
-                }
-                Log.d("perfect", String.valueOf(mydb.getResults()));
+                    Log.d("perfect", String.valueOf(mydb.getResults()));
 
-                ComplaintdetailsNew2.tltitemcost.setText((""+(Integer.parseInt(ComplaintdetailsNew2.tltitemcost.getText().toString())
-                        +Integer.parseInt(holder.sellingPrice.getText().toString()))));
-                ComplaintdetailsNew2.tltitem.setText(holder.txt_val.getText().toString() + " item Added");
-                ComplaintdetailsNew2.tltitem.setText("" + mydb.getProfilesCount() + " item Added");
+                    ComplaintdetailsNew2.tltitemcost.setText((""+(Integer.parseInt(ComplaintdetailsNew2.tltitemcost.getText().toString())
+                            +Integer.parseInt(holder.sellingPrice.getText().toString()))));
+                    ComplaintdetailsNew2.tltitem.setText(holder.txt_val.getText().toString() + " item Added");
+                    ComplaintdetailsNew2.tltitem.setText("" + mydb.getProfilesCount() + " item Added");
+                }catch (Exception e){}
             }
         });
 
