@@ -361,6 +361,9 @@ public class LoginActivity extends AppCompatActivity {
                                     String str2 = (String) itemSnapshot.child("email").getValue(String.class);
                                     String str3 = (String) itemSnapshot.child("AdhaarCard").getValue(String.class);
                                     String str4 = (String) itemSnapshot.child("License").getValue(String.class);
+                                    try {
+                                        isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
+                                    }catch (Exception e){} 
                                     LoginActivity.this.Technician_ID = (String) itemSnapshot.child("Technician ID").getValue(String.class);
                                     LoginActivity.this.Techniciandetails.add(new TechnicianCredentiansModel(LoginActivity.this.Mobile, LoginActivity.this.Technician_Password));
                                     if (LoginActivity.this.binding.phonenumber.getText().toString().equalsIgnoreCase(LoginActivity.this.Mobile) && LoginActivity.this.binding.password.getText().toString().equalsIgnoreCase(LoginActivity.this.Technician_Password)) {
@@ -370,7 +373,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 try{
-                                    isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
                                     if(!isdelete.equals("true")){
                                         if (LoginActivity.this.isInvalid) {
                                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, technicianHomeActivity.class));
