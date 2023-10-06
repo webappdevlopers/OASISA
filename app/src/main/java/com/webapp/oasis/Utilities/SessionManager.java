@@ -99,17 +99,19 @@ public class SessionManager {
 
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<>();
-        user.put(KEY_AdminID, this.pref.getString(KEY_AdminID, ""));
+        try {
+            user.put(KEY_AdminID, this.pref.getString(KEY_AdminID, ""));
 
-        user.put(AMOUNT, this.pref.getString(AMOUNT, ""));
-        user.put(KEY_LoginCode, this.pref.getString(KEY_LoginCode, ""));
-        user.put(KEY_TecnicianID, this.pref.getString(KEY_TecnicianID, ""));
-        user.put("name", this.pref.getString("name", ""));
-        user.put(KEY_MOB, this.pref.getString(KEY_MOB, ""));
-        user.put(KEY_PLACE, this.pref.getString(KEY_PLACE, ""));
-        user.put(KEY_HASH, this.pref.getString(KEY_HASH, ""));
-        user.put(KEY_ADMIN_ROLE, this.pref.getString(KEY_ADMIN_ROLE, ""));
-        user.put(CustomerId, this.pref.getString(CustomerId, ""));
+            user.put(AMOUNT, this.pref.getString(AMOUNT, ""));
+            user.put(KEY_LoginCode, this.pref.getString(KEY_LoginCode, ""));
+            user.put(KEY_TecnicianID, this.pref.getString(KEY_TecnicianID, ""));
+            user.put("name", this.pref.getString("name", ""));
+            user.put(KEY_MOB, this.pref.getString(KEY_MOB, ""));
+            user.put(KEY_PLACE, this.pref.getString(KEY_PLACE, ""));
+            user.put(KEY_HASH, this.pref.getString(KEY_HASH, ""));
+            user.put(KEY_ADMIN_ROLE, this.pref.getString(KEY_ADMIN_ROLE, ""));
+            user.put(CustomerId, this.pref.getString(CustomerId, ""));
+        }catch (Exception e){}
         return user;
     }
 

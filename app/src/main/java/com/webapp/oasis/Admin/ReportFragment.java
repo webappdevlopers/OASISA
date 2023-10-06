@@ -339,9 +339,9 @@ public class ReportFragment extends Fragment {
             sd = Environment.getExternalStorageDirectory();
             directory = new File(sd.getAbsolutePath());
             file = new File(directory, csvFile);
-            WorkbookSettings wbSettings = new WorkbookSettings();
-            wbSettings.setLocale(new Locale("en", "EN"));
             try {
+                WorkbookSettings wbSettings = new WorkbookSettings();
+                wbSettings.setLocale(new Locale("en", "EN"));
                 workbook = Workbook.createWorkbook(file, wbSettings);
                 createFirstSheet(workbook);
                 //closing cursor

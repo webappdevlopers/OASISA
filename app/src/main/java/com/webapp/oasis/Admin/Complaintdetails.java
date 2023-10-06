@@ -471,11 +471,11 @@ public class Complaintdetails extends AppCompatActivity {
             int secondsDelayed = 1;
             new Handler().postDelayed(new Runnable() {
                 public void run() {
-                    final ProgressDialog showMe1 = new ProgressDialog(Complaintdetails.this);
-                    showMe1.setMessage("Please wait");
-                    showMe1.setCancelable(true);
-                    showMe1.setCanceledOnTouchOutside(false);
-                    showMe1.show();
+//                    ProgressDialog showMe1 = new ProgressDialog(Complaintdetails.this);
+//                    showMe1.setMessage("Please wait");
+//                    showMe1.setCancelable(true);
+//                    showMe1.setCanceledOnTouchOutside(false);
+//                    showMe1.show();
                     FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Techinician/TechinicianDetails").addValueEventListener(new ValueEventListener() {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
@@ -488,11 +488,11 @@ public class Complaintdetails extends AppCompatActivity {
                                         Complaintdetails.this.binding.technicianname.setText(agentListModel2.getName());
                                         Complaintdetails.this.binding.techniciannumber.setText(agentListModel2.getMobile());
                                     }
-                                    showMe1.dismiss();
+//                                    showMe1.dismiss();
                                 }
                                 return;
                             }
-                            showMe1.dismiss();
+//                            showMe1.dismiss();
                         }
 
                         public void onCancelled(DatabaseError databaseError) {

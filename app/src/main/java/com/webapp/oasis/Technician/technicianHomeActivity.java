@@ -44,12 +44,14 @@ public class technicianHomeActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                         String technician_id = itemSnapshot.child("Technician ID").getValue(String.class);
-                        String isDelete = itemSnapshot.child("isDelete").getValue(String.class);
-                        if (technician_id.equals(technicianId)) {
-                            if (isDelete.equals("true")) {
-                                session.logoutUser();
+                        try {
+                            String isDelete = itemSnapshot.child("isDelete").getValue(String.class);
+                            if (technician_id.equals(technicianId)) {
+                                if (isDelete.equals("true")) {
+                                    session.logoutUser();
+                                }
                             }
-                        }
+                        }catch (Exception e){}
                     }
                 }
             }
