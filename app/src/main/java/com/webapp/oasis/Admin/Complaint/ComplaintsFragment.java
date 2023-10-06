@@ -134,9 +134,11 @@ public class ComplaintsFragment extends Fragment {
                                             return (t2.getDate()+t2.getTiming()).compareTo(t1.getDate()+t1.getTiming());
                                         }
                                     });
-                                    complaintsFragment.myOrderAdapter = new AdminDriverListAdapter(complaintsFragment.getActivity(), ComplaintsFragment.this.f21dm);
-                                    ComplaintsFragment.this.mRecyclerView.setAdapter(ComplaintsFragment.this.myOrderAdapter);
-                                    ComplaintsFragment.this.myOrderAdapter.notifyDataSetChanged();
+                                    try {
+                                        complaintsFragment.myOrderAdapter = new AdminDriverListAdapter(complaintsFragment.getActivity(), ComplaintsFragment.this.f21dm);
+                                        ComplaintsFragment.this.mRecyclerView.setAdapter(ComplaintsFragment.this.myOrderAdapter);
+                                        ComplaintsFragment.this.myOrderAdapter.notifyDataSetChanged();
+                                    }catch (Exception e){}
                                     showMe.dismiss();
                                 } else {
                                     r14 = r0;
@@ -155,9 +157,11 @@ public class ComplaintsFragment extends Fragment {
                                 ComplaintsFragment complaintsFragment2 = ComplaintsFragment.this;
                                 String str10 = image2;
                                 String str11 = timing;
+                                try {
                                 complaintsFragment2.myOrderAdapter = new AdminDriverListAdapter(complaintsFragment2.getActivity(), ComplaintsFragment.this.f21dm);
                                 ComplaintsFragment.this.mRecyclerView.setAdapter(ComplaintsFragment.this.myOrderAdapter);
                                 ComplaintsFragment.this.myOrderAdapter.notifyDataSetChanged();
+                                }catch (Exception e){}
                                 showMe.dismiss();
                                 r14 = r0;
                             } else {

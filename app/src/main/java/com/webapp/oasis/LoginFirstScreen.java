@@ -272,7 +272,6 @@ public class LoginFirstScreen extends AppCompatActivity {
                 bannerAdapter = new BannerAdapter(LoginFirstScreen.this, bannerArraylist);
 
                 viewPager.setAdapter(bannerAdapter);
-                viewPager.setDuration(99999999);
                 indicator.setViewPager(viewPager);
             }
 
