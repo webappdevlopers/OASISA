@@ -188,7 +188,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                             a.addCategory("android.intent.category.HOME");
                             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(a);
-                        } else if (value.equalsIgnoreCase("forceUpdate")) {
+                        } else if (!value.equalsIgnoreCase("1.0")) {
                             redirectToPlayStore();
                         }
                     }
