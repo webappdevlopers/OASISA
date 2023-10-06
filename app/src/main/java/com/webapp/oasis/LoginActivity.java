@@ -363,7 +363,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String str4 = (String) itemSnapshot.child("License").getValue(String.class);
                                     try {
                                         isdelete = (String) itemSnapshot.child("isDelete").getValue(String.class);
-                                    }catch (Exception e){} 
+                                    }catch (Exception e){}
                                     LoginActivity.this.Technician_ID = (String) itemSnapshot.child("Technician ID").getValue(String.class);
                                     LoginActivity.this.Techniciandetails.add(new TechnicianCredentiansModel(LoginActivity.this.Mobile, LoginActivity.this.Technician_Password));
                                     if (LoginActivity.this.binding.phonenumber.getText().toString().equalsIgnoreCase(LoginActivity.this.Mobile) && LoginActivity.this.binding.password.getText().toString().equalsIgnoreCase(LoginActivity.this.Technician_Password)) {

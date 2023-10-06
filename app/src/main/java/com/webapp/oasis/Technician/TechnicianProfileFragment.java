@@ -55,13 +55,14 @@ public class TechnicianProfileFragment extends Fragment {
                         DataSnapshot itemSnapshot = it.next();
                         AgentListModel agentListModel2 = new AgentListModel((String) itemSnapshot.child("Name").getValue(String.class), (String) itemSnapshot.child("Mobile").getValue(String.class), (String) itemSnapshot.child("Technician Password").getValue(String.class), (String) itemSnapshot.child("email").getValue(String.class), (String) itemSnapshot.child("AdhaarCard").getValue(String.class), (String) itemSnapshot.child("License").getValue(String.class), (String) itemSnapshot.child("Technician ID").getValue(String.class),(String) itemSnapshot.child("isDelete").getValue(String.class));
                         if(agentListModel2.getTechnician_id().equals(technicianId_session)){
-
-                            TechnicianProfileFragment.this.binding.name.setText(agentListModel2.getName());
-                            TechnicianProfileFragment.this.binding.mobile.setText(agentListModel2.getMobile());
-                            TechnicianProfileFragment.this.binding.email.setText(agentListModel2.getEmail());
-                            url = agentListModel2.getLicense();
-                            Glide.with(TechnicianProfileFragment.this).load(agentListModel2.getLicense()).
-                                    placeholder((int) R.drawable.noimage).into(TechnicianProfileFragment.this.binding.rluploadAdhaarcard);
+                            try {
+                                TechnicianProfileFragment.this.binding.name.setText(agentListModel2.getName());
+                                TechnicianProfileFragment.this.binding.mobile.setText(agentListModel2.getMobile());
+                                TechnicianProfileFragment.this.binding.email.setText(agentListModel2.getEmail());
+                                url = agentListModel2.getLicense();
+                                Glide.with(TechnicianProfileFragment.this).load(agentListModel2.getLicense()).
+                                        placeholder((int) R.drawable.noimage).into(TechnicianProfileFragment.this.binding.rluploadAdhaarcard);
+                            }catch (Exception e){}
                         }
                         showMe1.dismiss();
                     }

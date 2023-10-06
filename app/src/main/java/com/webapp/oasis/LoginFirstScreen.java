@@ -87,22 +87,7 @@ public class LoginFirstScreen extends AppCompatActivity {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
         this.logincode = sessionManager.getUserDetails().get(SessionManager.KEY_LoginCode);
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            public /* synthetic */ void lambda$run$0$LoginFirstScreen$1() {
-                LoginFirstScreen.this.viewPager.setCurrentItem(LoginFirstScreen.this.viewPager.getCurrentItem() + 1, true);
-            }
 
-            public void run() {
-                LoginFirstScreen.this.runOnUiThread(new Runnable() {
-                    public final void run() {
-
-                        lambda$run$0$LoginFirstScreen$1();
-                      //  throw new RuntimeException("Test Crash"); // Force a crash
-
-                    }
-                });
-            }
-        }, (long) CredentialsApi.CREDENTIAL_PICKER_REQUEST_CODE, (long) CredentialsApi.CREDENTIAL_PICKER_REQUEST_CODE);
 
         //viewpager implementation
         viewPager = findViewById(R.id.viewpager);
@@ -128,6 +113,22 @@ public class LoginFirstScreen extends AppCompatActivity {
                 finish();
             }
         }
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            public /* synthetic */ void lambda$run$0$LoginFirstScreen$1() {
+                LoginFirstScreen.this.viewPager.setCurrentItem(LoginFirstScreen.this.viewPager.getCurrentItem() + 1, true);
+            }
+
+            public void run() {
+                LoginFirstScreen.this.runOnUiThread(new Runnable() {
+                    public final void run() {
+
+                        lambda$run$0$LoginFirstScreen$1();
+                        //  throw new RuntimeException("Test Crash"); // Force a crash
+
+                    }
+                });
+            }
+        }, (long) CredentialsApi.CREDENTIAL_PICKER_REQUEST_CODE, (long) CredentialsApi.CREDENTIAL_PICKER_REQUEST_CODE);
         this.btnadmin = (RelativeLayout) findViewById(R.id.btnadmin);
         this.btnuser = (RelativeLayout) findViewById(R.id.btnuser);
         this.btntechnician = (RelativeLayout) findViewById(R.id.btntechnician);
