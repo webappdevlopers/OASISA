@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.Admin.AdminUpdateItemDetailsActivity;
+import com.webapp.oasis.Admin.EditAdmin;
 import com.webapp.oasis.Model.ItemsModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.SqlliteDb.DatabaseHelper;
@@ -74,25 +75,23 @@ public class AdminListAdapter extends RecyclerView.Adapter<AdminListAdapter.View
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder vh = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_service_list_details, parent, false));
+        ViewHolder vh = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_list_details, parent, false));
         this.requestQueue = Volley.newRequestQueue(this.context);
         return vh;
     }
 
     public void onBindViewHolder(ViewHolder holder, int i) {
         final ItemsModel user_details = this.mUser.get(i);
-        holder.name.setText(i+1+") Number  : "+user_details.getItemName()+"\n    Password : "+user_details.getBrandName());
-        holder.price.setText(user_details.getPrice());
+        holder.name.setText(user_details.getItemName());
+        holder.price.setText(user_details.getBrandName());
 
         holder.update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(AdminListAdapter.this.context, AdminUpdateItemDetailsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra("name", user_details.getItemName());
-                intent.putExtra("brandname", user_details.getBrandName());
-                intent.putExtra(DatabaseHelper.COL_3, user_details.getQty());
-                intent.putExtra("size", user_details.getPrice());
-                intent.putExtra("ItemID", user_details.getItemID());
+                Intent intent = new Intent(AdminListAdapter.this.context, EditAdmin.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Admin_name", user_details.getItemName());
+                intent.putExtra("Admin_password", user_details.getBrandName());
+                intent.putExtra("Admin_ID", user_details.getQty());
                 AdminListAdapter.this.context.startActivity(intent);
             }
         });
@@ -185,7 +184,7 @@ public class AdminListAdapter extends RecyclerView.Adapter<AdminListAdapter.View
             this.image = (ImageView) itemView.findViewById(R.id.rluploadAdhaarcard);
 //            this.color = (TextView) itemView.findViewById(R.id.color);
             this.weight = (TextView) itemView.findViewById(R.id.weight);
-            this.price = (TextView) itemView.findViewById(R.id.price);
+            this.price = (TextView) itemView.findViewById(R.id.password);
             this.update = (ImageView) itemView.findViewById(R.id.update);
             this.delete = (ImageView) itemView.findViewById(R.id.delete);
         }

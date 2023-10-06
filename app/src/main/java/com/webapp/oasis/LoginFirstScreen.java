@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -97,7 +98,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                     public final void run() {
 
                         lambda$run$0$LoginFirstScreen$1();
-                      //  throw new RuntimeException("Test Crash"); // Force a crash
+                        //  throw new RuntimeException("Test Crash"); // Force a crash
 
                     }
                 });
@@ -120,10 +121,10 @@ public class LoginFirstScreen extends AppCompatActivity {
             } else if (this.logincode.equals(ExifInterface.GPS_MEASUREMENT_2D)) {
                 startActivity(new Intent(this, technicianHomeActivity.class));
                 finish();
-            }else if (this.logincode.equals("5")) {
+            } else if (this.logincode.equals("5")) {
                 startActivity(new Intent(LoginFirstScreen.this, AdminHomePage.class));
                 finish();
-            }else if (this.logincode.equals("6")) {
+            } else if (this.logincode.equals("6")) {
                 startActivity(new Intent(LoginFirstScreen.this, AdminHomePage.class));
                 finish();
             }
@@ -186,6 +187,8 @@ public class LoginFirstScreen extends AppCompatActivity {
                             a.addCategory("android.intent.category.HOME");
                             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(a);
+                        } else if (value.equalsIgnoreCase("forceUpdate")) {
+                            redirectToPlayStore();
                         }
                     }
 
@@ -205,6 +208,7 @@ public class LoginFirstScreen extends AppCompatActivity {
         } else {
             NetworkDialog();
         }
+
     }
 
     private void NetworkDialog() {
@@ -216,7 +220,7 @@ public class LoginFirstScreen extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginFirstScreen.this,LoginFirstScreen.class);
+                Intent intent = new Intent(LoginFirstScreen.this, LoginFirstScreen.class);
                 startActivity(intent);
                 finish();
                 dialogs.dismiss();
@@ -238,7 +242,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                 String value = snapshot.getValue(String.class);
 
                 Toast.makeText(LoginFirstScreen.this, "" + value, Toast.LENGTH_LONG).show();
-            } 
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -246,8 +250,10 @@ public class LoginFirstScreen extends AppCompatActivity {
             }
         });
     }
+
     private Handler handler = new Handler();
     BannerAdapter bannerAdapter;
+
     private void showBannerOnViewPager() {
         databaseReferenceForBanner.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -333,7 +339,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                             Log.d(Oscillator.TAG, "Data uploaded successfully");
                             String mobileNumber = userSnapshot.child("MobileNumber").getValue(String.class);
 
-                            Log.d("mobileNumber",mobileNumber+"");
+                            Log.d("mobileNumber", mobileNumber + "");
                             session.LoginCode(ExifInterface.GPS_MEASUREMENT_3D);
                             session.useridsession(googleSignInAccount.getId());
                             session.createLoginSession((String) null, googleSignInAccount.getDisplayName(), mobileNumber, "", "");
@@ -366,11 +372,13 @@ public class LoginFirstScreen extends AppCompatActivity {
                     Log.d(Oscillator.TAG, "No data found in the database");
                 }
             }
+
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("TAG", "Failed to read value.", databaseError.toException());
             }
         });
     }
+
     private void startAutoScrollTimer() {
         autoScrollTimer = new Timer();
         autoScrollTimerTask = new TimerTask() {
@@ -413,4 +421,17 @@ public class LoginFirstScreen extends AppCompatActivity {
         }
     }
 
+    private void redirectToPlayStore() {
+        try {
+            // Open the app's page on the Play Store for updates
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + getPackageName()));
+            startActivity(intent);
+        } catch (android.content.ActivityNotFoundException e) {
+            // If the Play Store app is not available, open the Play Store website
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+            startActivity(intent);
+        }
+    }
 }

@@ -42,6 +42,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.webapp.oasis.Admin.EditAdmin"
+            android:exported="false" />
+        <activity
             android:name="com.webapp.oasis.Admin.Add_Admin_credentials"
             android:exported="false" />
         <activity
@@ -74,7 +77,6 @@
         <activity
             android:name="com.webapp.oasis.Admin.technician.EditTechnician"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.webapp.oasis.Wallet.WalletDriverActivity"
             android:screenOrientation="portrait" />
