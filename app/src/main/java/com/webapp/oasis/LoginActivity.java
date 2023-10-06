@@ -50,6 +50,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -176,6 +177,8 @@ public class LoginActivity extends AppCompatActivity {
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
         ActivityLoginBinding inflate = ActivityLoginBinding.inflate(getLayoutInflater());
         this.binding = inflate;
         setContentView((View) inflate.getRoot());
@@ -234,6 +237,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         this.signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
                 if (LoginActivity.this.login_from.equalsIgnoreCase("Super Admin")) {
 
                     if (LoginActivity.this.phonenumber.getText().toString().isEmpty() || LoginActivity.this.phonenumber.length() != 10
