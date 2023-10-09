@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.webapp.oasis.R;
@@ -24,7 +25,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d("MyFirebaseMessaging", "New FCM Token: " + token);
         sendRegistrationToServer(token);
     }
+    public static void sendMessage(String recipientToken, String message) {
+        RemoteMessage.Builder messageBuilder = new RemoteMessage.Builder(recipientToken);
+        messageBuilder.setMessageId(Integer.toString(124));
+        messageBuilder.addData("message", message);
 
+        FirebaseMessaging.getInstance().send(messageBuilder.build());
+    }
     private void sendRegistrationToServer(String token) {
         // Implement logic to send the registration token to your server if needed.
         Log.d("HIteshToken", "sendRegistrationToServer: " + token+"   end");
