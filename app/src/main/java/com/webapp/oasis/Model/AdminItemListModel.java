@@ -1,86 +1,76 @@
 package com.webapp.oasis.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class AdminItemListModel {
-    private String ItemID;
-    private String ItemName;
-    private String BrandName;
-    private String Price;
-    private String ItemQty;
-    private String Qty;
+    private String itemID;
+    private String itemName;
+    private String brandName;
+    private String price;
+    private String itemQty;
+    private String qty;
 
-    public AdminItemListModel(String ItemName2, String brandName2, String qty2, String price2, String ItemQty, String ItemId) {
-        this.ItemID = ItemId;
-        this.ItemName = ItemName2;
-        this.BrandName = brandName2;
-        this.Qty = qty2;
-        this.Price = price2;
-        this.ItemQty = ItemQty;
+    public AdminItemListModel(String itemName, String brandName, String qty, String price, String itemQty, String itemID) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.brandName = brandName;
+        this.qty = qty;
+        this.price = price;
+        this.itemQty = itemQty;
     }
-    public AdminItemListModel(String brandName2,String ItemName2, String price2, String ItemQty) {
-        this.ItemName = ItemName2;
-        this.BrandName = brandName2;
-        this.Price = price2;
-        this.Qty = ItemQty;
+    public AdminItemListModel(String brandName,String itemName, String price, String itemQty) {
+        this.itemName = itemName;
+        this.brandName = brandName;
+        this.price = price;
+        this.qty = itemQty;
     }
 
     public String getItemQty() {
-        return ItemQty;
+        return itemQty;
     }
 
     public void setItemQty(String itemQty) {
-        ItemQty = itemQty;
+        this.itemQty = itemQty;
     }
 
     public AdminItemListModel() {
     }
     public void setItemID(String itemID) {
-        ItemID = itemID;
+        this.itemID = itemID;
     }
 
     public void setItemName(String itemName) {
-        ItemName = itemName;
+        this.itemName = itemName;
     }
 
     public void setBrandName(String brandName) {
-        BrandName = brandName;
+        this.brandName = brandName;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public void setQty(String qty) {
-        Qty = qty;
+        this.qty = qty;
     }
 
     public String getItemName() {
-        return this.ItemName;
+        return itemName;
     }
 
     public String getBrandName() {
-        return this.BrandName;
+        return brandName;
     }
 
     public String getQty() {
-        return this.Qty;
+        return qty;
     }
 
     public String getPrice() {
-        return this.Price;
+        return price;
     }
 
     public String getItemID() {
-        return this.ItemID;
+        return itemID;
     }
 
-    @Override
-    public String toString() {
-        return  ", BrandName='" + BrandName + '\'' +
-                "ItemName='" + ItemName + '\'' +
-                ", Price='" + Price + '\'' +
-                ", ItemQty='" + ItemQty + '\'' ;
-    }
 }
