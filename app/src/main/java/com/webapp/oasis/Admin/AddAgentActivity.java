@@ -78,9 +78,7 @@ public class AddAgentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_agent);
-
         requestPermission();
-
         session = new SessionManager(getApplicationContext());
         final HashMap<String, String> users = session.getUserDetails();
 //        user_id = users.get(session.KEY_USERID);
@@ -102,8 +100,8 @@ public class AddAgentActivity extends AppCompatActivity {
         place = findViewById(R.id.place);
         email = findViewById(R.id.email);
         image = findViewById(R.id.image);
+        back = findViewById(R.id.back);
 
-            back = findViewById(R.id.back);
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

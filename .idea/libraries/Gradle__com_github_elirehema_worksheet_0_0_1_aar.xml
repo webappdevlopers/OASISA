@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.elirehema:worksheet:0.0.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e061da3b2c6a113b7d173f7f04ba6f/jetified-worksheet-0.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e061da3b2c6a113b7d173f7f04ba6f/jetified-worksheet-0.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e061da3b2c6a113b7d173f7f04ba6f/jetified-worksheet-0.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fcc6c3231fce4044d6b12e09fde3f12f/jetified-worksheet-0.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fcc6c3231fce4044d6b12e09fde3f12f/jetified-worksheet-0.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fcc6c3231fce4044d6b12e09fde3f12f/jetified-worksheet-0.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

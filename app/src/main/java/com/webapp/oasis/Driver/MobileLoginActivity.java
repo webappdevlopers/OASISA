@@ -25,7 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,23 +75,6 @@ public class MobileLoginActivity extends AppCompatActivity {
             }
         });
 
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                if (intent.getAction().equals(Config1.REGISTRATION_COMPLETE)) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(Config1.TOPIC_GLOBAL);
-
-                  //  displayFirebaseRegId();
-
-                } else if (intent.getAction().equals(Config1.PUSH_NOTIFICATION)) {
-
-                    String message = intent.getStringExtra("message");
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        //displayFirebaseRegId();
 
         requestPermission();
     }

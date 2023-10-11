@@ -20,10 +20,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
@@ -42,11 +44,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.webapp.oasis.Admin.Complaintdetails;
 import com.webapp.oasis.Model.AgentListModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 import com.webapp.oasis.databinding.ActivityLogComplaintBinding;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -184,9 +186,9 @@ public class AddComplaintActivity extends AppCompatActivity {
                             DatabaseReference myRef = database.getReference("Customer/Complaint");
                             Map<String, Object> data = new HashMap<>();
                             FirebaseDatabase firebaseDatabase = database;
-                            data.put("Complaint", "Complaint :"+AddComplaintActivity.this.binding.complaintEt.getText().toString()+
-                                    "\nAddress : "+AddComplaintActivity.this.binding.address.getText().toString()+
-                                    "\nNumber : "+ AddComplaintActivity.this.binding.mobilenumber.getText().toString());
+                            data.put("Complaint", "Complaint :" + AddComplaintActivity.this.binding.complaintEt.getText().toString() +
+                                    "\nAddress : " + AddComplaintActivity.this.binding.address.getText().toString() +
+                                    "\nNumber : " + AddComplaintActivity.this.binding.mobilenumber.getText().toString());
                             data.put("Service", AddComplaintActivity.this.spinner_select_service.getSelectedItem().toString());
                             data.put("Status", "Pending");
                             data.put(HttpHeaders.DATE, currentDate);
@@ -207,12 +209,14 @@ public class AddComplaintActivity extends AppCompatActivity {
                                 public void onComplete(Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         showMe.dismiss();
+
                                         AlertDialog.Builder builder = new AlertDialog.Builder(AddComplaintActivity.this);
                                         builder.setMessage("Complaint Has Been Added Successfully");
                                         builder.setPositiveButton("GO TO COMPLAINT DETAILS PAGE", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 AddComplaintActivity.this.startActivity(new Intent(AddComplaintActivity.this, ComplaintStatusActivity.class));
                                                 AddComplaintActivity.this.finish();
+
                                             }
                                         });
                                         builder.setNegativeButton("GO TO HOME PAGE", new DialogInterface.OnClickListener() {
@@ -242,9 +246,9 @@ public class AddComplaintActivity extends AppCompatActivity {
                         DatabaseReference myRef2 = database2.getReference("Customer/Complaint");
                         Map<String, Object> data2 = new HashMap<>();
                         FirebaseDatabase firebaseDatabase2 = database2;
-                        data2.put("Complaint", "Complaint :"+AddComplaintActivity.this.binding.complaintEt.getText().toString()+
-                                "\nAddress : "+AddComplaintActivity.this.binding.address.getText().toString()+
-                                "\nNumber : "+ AddComplaintActivity.this.binding.mobilenumber.getText().toString());
+                        data2.put("Complaint", "Complaint :" + AddComplaintActivity.this.binding.complaintEt.getText().toString() +
+                                "\nAddress : " + AddComplaintActivity.this.binding.address.getText().toString() +
+                                "\nNumber : " + AddComplaintActivity.this.binding.mobilenumber.getText().toString());
                         data2.put("Service", AddComplaintActivity.this.spinner_select_service.getSelectedItem().toString());
                         data2.put("Status", "Pending");
                         data2.put(HttpHeaders.DATE, currentDate2);
@@ -318,6 +322,7 @@ public class AddComplaintActivity extends AppCompatActivity {
                     AddComplaintActivity.this.spinner_select_service.setAdapter(adapter);
                 }
             }
+
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("TAG", "Failed to read value.", databaseError.toException());
             }
@@ -379,6 +384,7 @@ public class AddComplaintActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{"android.permission-group.CAMERA", "android.permission.CAMERA", android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         if (requestCode != 1) {
@@ -386,7 +392,7 @@ public class AddComplaintActivity extends AppCompatActivity {
                 Bitmap imageBitmap = (Bitmap) imageReturnedIntent.getExtras().get("data");
                 Glide.with((FragmentActivity) this).load(imageBitmap).apply((BaseRequestOptions<?>) ((RequestOptions) new RequestOptions().placeholder((int) R.drawable.ic_camera_alt_black_24dp)).fitCenter()).into((ImageView) this.binding.uploadImage);
                 uploadImage(bitmapToUri(imageBitmap));
-            }else if (requestCode == 2 && imageReturnedIntent != null) {
+            } else if (requestCode == 2 && imageReturnedIntent != null) {
                 Bitmap imageBitmap = (Bitmap) imageReturnedIntent.getExtras().get("data");
                 Glide.with((FragmentActivity) this).load(imageBitmap).apply((BaseRequestOptions<?>) ((RequestOptions) new RequestOptions().placeholder((int) R.drawable.ic_camera_alt_black_24dp)).fitCenter()).into((ImageView) this.binding.uploadImage);
                 uploadImage(bitmapToUri(imageBitmap));
@@ -457,4 +463,6 @@ public class AddComplaintActivity extends AppCompatActivity {
         bmp.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         return Base64.encodeToString(baos.toByteArray(), 0);
     }
+
+
 }

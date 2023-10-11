@@ -42,7 +42,9 @@ android {
         }
     }
     packagingOptions {
-        exclude 'META-INF/proguard/androidx-annotations.pro'
+        resources {
+            excludes += ['META-INF/proguard/androidx-annotations.pro']
+        }
     }
 
     defaultConfig {
@@ -60,9 +62,9 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'com.google.firebase:firebase-auth:22.1.1'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.1'
+    implementation 'com.google.firebase:firebase-auth:22.1.2'
+    implementation 'com.google.firebase:firebase-crashlytics:18.4.3'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.3'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -105,12 +107,11 @@ dependencies {
     implementation 'com.asksira.android:bsimagepicker:1.2.2'
 
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
-    implementation 'com.google.firebase:firebase-messaging:23.2.1'
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
-    implementation 'com.google.firebase:firebase-auth:22.1.1'
+    implementation 'com.google.firebase:firebase-auth:22.1.2'
     implementation 'com.google.firebase:firebase-database:20.2.2'
-    implementation 'com.google.firebase:firebase-firestore:24.7.1'
+    implementation 'com.google.firebase:firebase-firestore:24.8.1'
     implementation 'com.google.firebase:firebase-storage:20.2.1'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
@@ -140,7 +141,6 @@ dependencies {
     implementation 'org.json:json:20171018'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
 
