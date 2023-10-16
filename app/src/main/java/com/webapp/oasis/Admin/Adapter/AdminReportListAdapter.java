@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,15 +27,17 @@ import com.webapp.oasis.Model.AgentDriverOrderListModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportListAdapter.ViewHolder> {
+public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportListAdapter.ViewHolder> implements Filterable {
     /* access modifiers changed from: private */
     public Context context;
     String hash;
     int lastPosition = -1;
     private List<AgentDriverOrderListModel> mUser;
+    private List<AgentDriverOrderListModel> mUser1;
     RequestQueue requestQueue;
     SessionManager session;
     StringRequest stringRequest;
@@ -43,6 +46,7 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
     public AdminReportListAdapter(Context context2, List<AgentDriverOrderListModel> mUser2) {
         this.context = context2;
         this.mUser = mUser2;
+        this.mUser1 = mUser2;
         SessionManager sessionManager = new SessionManager(context2);
         this.session = sessionManager;
         HashMap<String, String> users = sessionManager.getUserDetails();
@@ -50,10 +54,10 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
         this.hash = users.get(SessionManager.KEY_HASH);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+//    @Override
+//    public int getItemViewType(int position) {
+//        return position;
+//    }
 
     public int getItemCount() {
         return this.mUser.size();
@@ -66,6 +70,7 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final AgentDriverOrderListModel user_details = this.mUser.get(i);
         viewHolder.complaint.setText(user_details.getComplaint());
+        viewHolder.etcomplaintid.setText(user_details.getTiming().replace(":", ""));
         viewHolder.service.setText(user_details.getService());
         viewHolder.customerMobileNo.setText(user_details.getCustomerMobileNumber());
         viewHolder.date.setText(user_details.getDate());
@@ -129,19 +134,10 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
         });
     }
 
-//    private boolean appInstalledOrNot(String uri) {
-//        try {
-//            this.context.getPackageManager().getPackageInfo(uri, 1);
-//            return true;
-//        } catch (PackageManager.NameNotFoundException e) {
-//            return false;
-//        }
-//    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         Button btn_qrcode;
         RelativeLayout call;
-        TextView complaint;
+        TextView complaint,etcomplaintid;
         TextView customerMobileNo;
         TextView customerName,closingdatetime;
         TextView date;
@@ -166,6 +162,62 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
             this.whatsapp = (RelativeLayout) itemView.findViewById(R.id.whatsapp);
             this.call = (RelativeLayout) itemView.findViewById(R.id.call);
             this.status = (TextView) itemView.findViewById(R.id.order_status);
+            this.etcomplaintid = (TextView) itemView.findViewById(R.id.etcomplaintid);
         }
     }
+
+    @Override
+    public android.widget.Filter getFilter() {
+        return new android.widget.Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String customerMobileNumber = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String complaint = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String customertName = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String status = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String service = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String dates = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+
+                if (charSequence.toString().isEmpty()) {
+                    mUser = mUser1;
+                } else {
+                    ArrayList<AgentDriverOrderListModel> filteredList = new ArrayList<>();
+
+                    for (AgentDriverOrderListModel androidVersion : mUser1) {
+                        String timing = androidVersion.getTiming().replace(":", "").toLowerCase();
+                        String timing1 = timing;
+                        String mobilenumber = androidVersion.getCustomerMobileNumber().toLowerCase();
+                        String custname = androidVersion.getCustomertName().toLowerCase();
+                        String compl = androidVersion.getComplaint().toLowerCase();
+                        String stat = androidVersion.getStatus().toLowerCase();
+                        String serv = androidVersion.getService().toLowerCase();
+                        String dat = androidVersion.getDate().toLowerCase();
+
+                        if (timing1.contains(charString)
+                                || mobilenumber.contains(customerMobileNumber)
+                                || compl.contains(complaint)
+                                || custname.contains(customertName)
+                                || stat.contains(status)
+                                || serv.contains(service)
+                                || dat.contains(dates)) {
+                            filteredList.add(androidVersion);
+                        }
+                    }
+                    mUser = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mUser;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mUser = (ArrayList<AgentDriverOrderListModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 }

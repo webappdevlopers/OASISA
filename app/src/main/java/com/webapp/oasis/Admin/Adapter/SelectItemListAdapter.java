@@ -219,32 +219,41 @@ public class SelectItemListAdapter extends RecyclerView.Adapter<SelectItemListAd
         }
     }
 
-    public Filter getFilter() {
-        return new Filter() {
-            /* access modifiers changed from: protected */
-            public FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    SelectItemListAdapter selectItemListAdapter = SelectItemListAdapter.this;
-                    List unused = selectItemListAdapter.mUser = selectItemListAdapter.mUser1;
+    @Override
+    public android.widget.Filter getFilter() {
+        return new android.widget.Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String itemnamess = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String brandname = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+                String price = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+
+                if (charSequence.toString().isEmpty()) {
+                    mUser = mUser1;
                 } else {
-//                    ArrayList<AdminItemListModel> filteredList = new ArrayList<>();
-//                    for (AdminItemListModel androidVersion : SelectItemListAdapter.this.mUser) {
-//                        if (androidVersion.getName().toLowerCase().contains(charString) || androidVersion.getName().contains(charString) || androidVersion.getName().contains(charString)) {
-//                            filteredList.add(androidVersion);
-//                        }
-//                    }
-//                    List unused2 = SelectItemListAdapter.this.mUser = filteredList;
+                    ArrayList<AdminItemListModel> filteredList = new ArrayList<>();
+
+                    for (AdminItemListModel androidVersion : mUser1) {
+                        String itemname = androidVersion.getItemName().toLowerCase();
+                        String bname = androidVersion.getBrandName().toLowerCase();
+                        String pr = androidVersion.getPrice().toLowerCase();
+
+                        if (itemname.contains(itemnamess) || bname.contains(brandname) || pr.contains(price)) {
+                            filteredList.add(androidVersion);
+                        }
+                    }
+                    mUser = filteredList;
                 }
+
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = SelectItemListAdapter.this.mUser;
+                filterResults.values = mUser;
                 return filterResults;
             }
 
-            /* access modifiers changed from: protected */
-            public void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                List unused = SelectItemListAdapter.this.mUser = (ArrayList) filterResults.values;
-                SelectItemListAdapter.this.notifyDataSetChanged();
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mUser = (ArrayList<AdminItemListModel>) filterResults.values;
+                notifyDataSetChanged();
             }
         };
     }

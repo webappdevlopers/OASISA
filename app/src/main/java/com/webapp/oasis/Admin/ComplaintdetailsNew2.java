@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -67,6 +68,7 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
     DatabaseHelper mydb;
     public static TextView tltitem;
     public static TextView tltitemcost;
+    private SearchView searchView;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,24 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
         this.mydb = new DatabaseHelper(ComplaintdetailsNew2.this);
         this.mydb.delete();
 
+        searchView = this.binding.getRoot().findViewById(R.id.searchview);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (myOrderAdapter == null) {
+                    return false;
+                } else {
+                    myOrderAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            }
+        });
         tltitem = findViewById(R.id.tltitem);
         tltitemcost = findViewById(R.id.tltitemcost);
         llproceed = findViewById(R.id.llproceed);

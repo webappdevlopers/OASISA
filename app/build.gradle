@@ -3,8 +3,8 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    viewBinding{
-        enabled=true
+    viewBinding {
+        enabled = true
     }
     compileSdkVersion 33
     buildToolsVersion "30.0.0"

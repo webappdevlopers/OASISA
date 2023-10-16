@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.appcompat.widget.SearchView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -46,6 +48,7 @@ public class ComplaintsFragment extends Fragment {
     AdminDriverListAdapter myOrderAdapter;
     SessionManager session;
     String technicianId_session;
+    private SearchView searchView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentComplaintsBinding.inflate(getLayoutInflater());
@@ -61,6 +64,27 @@ public class ComplaintsFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+        searchView = this.binding.getRoot().findViewById(R.id.searchview);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (myOrderAdapter == null) {
+                    return false;
+                } else {
+                    myOrderAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            }
+        });
+
         final ProgressDialog showMe = new ProgressDialog(getContext());
         showMe.setMessage("Please wait");
         showMe.setCancelable(true);
@@ -131,7 +155,7 @@ public class ComplaintsFragment extends Fragment {
                                     Collections.sort(ComplaintsFragment.this.f21dm, new Comparator<AgentDriverOrderListModel>() {
                                         @Override
                                         public int compare(AgentDriverOrderListModel t1, AgentDriverOrderListModel t2) {
-                                            return (t2.getDate()+t2.getTiming()).compareTo(t1.getDate()+t1.getTiming());
+                                            return (t2.getStatus()).compareTo(t1.getStatus());
                                         }
                                     });
                                     try {
