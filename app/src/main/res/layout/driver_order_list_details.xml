@@ -9,11 +9,11 @@
 
     <LinearLayout
         android:id="@+id/thirdlayout"
-        android:layout_toLeftOf="@id/llayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
+        android:layout_toLeftOf="@id/llayout"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -30,22 +30,46 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-<!--                <TextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibri"
-                    android:text="Complaint : "
+                    android:text="Complaint ID : "
                     android:textColor="#656571"
-                    android:textSize="14dp" />-->
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tvcomplaintid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:text="123"
+                    android:textColor="#61606c"
+                    android:textIsSelectable="true"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/calibri"
+                                    android:text="Complaint : "
+                                    android:textColor="#656571"
+                                    android:textSize="14dp" />-->
 
                 <TextView
                     android:id="@+id/complaint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibri"
-                    android:textIsSelectable="true"
                     android:text="123"
                     android:textColor="#61606c"
+                    android:textIsSelectable="true"
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -281,8 +305,8 @@
             android:text="Invoice"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:visibility="gone"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/status"
@@ -299,8 +323,8 @@
             android:id="@+id/parcel_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="fitXY"
             android:layout_marginBottom="5dp"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/ic_email" />
 
         <ImageView

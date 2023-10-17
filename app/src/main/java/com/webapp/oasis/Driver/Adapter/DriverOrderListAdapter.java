@@ -254,17 +254,17 @@ public class DriverOrderListAdapter extends RecyclerView.Adapter<DriverOrderList
             }
 
         });
-    }
-    private boolean appInstalledOrNot(String uri) {
-        PackageManager pm = context.getPackageManager();
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
         }
+        private boolean appInstalledOrNot(String uri) {
+            PackageManager pm = context.getPackageManager();
+            try {
+                pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+                return true;
+            } catch (PackageManager.NameNotFoundException e) {
+            }
 
-        return false;
-    }
+            return false;
+        }
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView receiver_name,mobile_no,source,destination,qty,weight,order_id;

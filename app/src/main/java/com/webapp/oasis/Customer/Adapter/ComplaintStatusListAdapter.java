@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,21 +26,24 @@ import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ComplaintStatusListAdapter extends RecyclerView.Adapter<ComplaintStatusListAdapter.ViewHolder> {
+public class ComplaintStatusListAdapter extends RecyclerView.Adapter<ComplaintStatusListAdapter.ViewHolder> implements Filterable {
     private Context context;
     String customer_id;
     String hash;
     int lastPosition = -1;
     private List<ComplaintStatusModel> mUser;
+    private List<ComplaintStatusModel> mUser1;
     SessionManager session;
     String user_id;
 
     public ComplaintStatusListAdapter(Context context2, List<ComplaintStatusModel> mUser2, String customer_id2) {
         this.customer_id = customer_id2;
         this.mUser = mUser2;
+        this.mUser1 = mUser2;
         this.context = context2;
         SessionManager sessionManager = new SessionManager(context2);
         this.session = sessionManager;
@@ -63,6 +67,7 @@ public class ComplaintStatusListAdapter extends RecyclerView.Adapter<ComplaintSt
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         ComplaintStatusModel user_details = this.mUser.get(i);
         viewHolder.service.setText(user_details.getService());
+        viewHolder.tvcomplaintid.setText(user_details.getTiming().replace(":", ""));
         viewHolder.date_new.setText(user_details.getDate());
         viewHolder.timing.setText(user_details.getTiming());
         viewHolder.status.setText(user_details.getStatus());
@@ -136,6 +141,7 @@ public class ComplaintStatusListAdapter extends RecyclerView.Adapter<ComplaintSt
         TextView start_amc_Date;
         TextView status;
         TextView timing;
+        TextView tvcomplaintid;
         TextView weight;
 
         public ViewHolder(View itemView) {
@@ -152,8 +158,52 @@ public class ComplaintStatusListAdapter extends RecyclerView.Adapter<ComplaintSt
             this.linearLayout_end_date = (LinearLayout) itemView.findViewById(R.id.ll_end_date);
             this.status = (TextView) itemView.findViewById(R.id.status);
             this.weight = (TextView) itemView.findViewById(R.id.weight);
+            this.tvcomplaintid = (TextView) itemView.findViewById(R.id.tvcomplaintid);
             this.btn = (Button) itemView.findViewById(R.id.btn);
             parcel_img = (ImageView) itemView.findViewById(R.id.parcel_img);
         }
+    }
+
+    @Override
+    public android.widget.Filter getFilter() {
+
+        return new android.widget.Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString().toLowerCase(); // Convert search query to lowercase
+
+                if (charString.isEmpty()) {
+                    mUser = mUser1;
+                } else {
+
+                    ArrayList<ComplaintStatusModel> filteredList = new ArrayList<>();
+
+                    for (ComplaintStatusModel androidVersion : mUser1) {
+                        String timing = androidVersion.getTiming().replace(":", "").toLowerCase();
+
+                        if (timing.contains(charString)
+                                || androidVersion.getCustomerMobileNumber().toLowerCase().contains(charString)
+                                || androidVersion.getComplaint().toLowerCase().contains(charString)
+                                || androidVersion.getCustomerName().toLowerCase().contains(charString)
+                                || androidVersion.getStatus().toLowerCase().contains(charString)
+                                || androidVersion.getStatus().toLowerCase().contains(charString)) {
+                            filteredList.add(androidVersion);
+                        }
+                    }
+                    mUser = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mUser;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mUser = (ArrayList<ComplaintStatusModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

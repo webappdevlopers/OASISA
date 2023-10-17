@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +34,7 @@ import com.webapp.oasis.R;
 import com.webapp.oasis.SqlliteDb.DatabaseHelper;
 import com.webapp.oasis.Utilities.SessionManager;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 

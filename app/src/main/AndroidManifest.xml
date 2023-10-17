@@ -41,167 +41,168 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Admin.CustomerAllListActivity"></activity>
         <activity
-            android:name="com.webapp.oasis.Admin.EditAdmin"
+            android:name=".Admin.EditAdmin"
             android:exported="false" />
         <activity
-            android:name="com.webapp.oasis.Admin.Add_Admin_credentials"
+            android:name=".Admin.Add_Admin_credentials"
             android:exported="false" />
         <activity
-            android:name="com.webapp.oasis.Admin.Complaintdetails"
+            android:name=".Admin.Complaintdetails"
             android:exported="false" />
         <activity
-            android:name="com.webapp.oasis.Admin.ComplaintdetailsNew2"
+            android:name=".Admin.ComplaintdetailsNew2"
             android:exported="false" />
         <activity
-            android:name="com.webapp.oasis.Technician.technicianHomeActivity"
+            android:name=".Technician.technicianHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="com.webapp.oasis.Admin.AddStockActivity"
+            android:name=".Admin.AddStockActivity"
             android:exported="false" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdminHomePage"
+            android:name=".Admin.AdminHomePage"
             android:exported="false"
             android:label="@string/title_activity_admin_home_page" />
         <activity
-            android:name="com.webapp.oasis.Customer.AddComplaintActivity"
+            android:name=".Customer.AddComplaintActivity"
             android:exported="false" />
-        <activity android:name="com.webapp.oasis.Customer.PaymentCustomerActivity" />
+        <activity android:name=".Customer.PaymentCustomerActivity" />
         <activity
-            android:name="com.webapp.oasis.Wallet.DriverApprovalPendingActivity"
+            android:name=".Wallet.DriverApprovalPendingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Wallet.WalletEmptyActivity"
+            android:name=".Wallet.WalletEmptyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.technician.EditTechnician"
+            android:name=".Admin.technician.EditTechnician"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Wallet.WalletDriverActivity"
+            android:name=".Wallet.WalletDriverActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Donation.DonationActivity"
+            android:name=".Donation.DonationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.WebviewActivity"
+            android:name=".WebviewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.See_Full_Image_F"
+            android:name=".Customer.See_Full_Image_F"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.CustomerOrderDetailActivity"
+            android:name=".Customer.CustomerOrderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Retailer.RetailerOtpActivity"
+            android:name=".Retailer.RetailerOtpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.ScanActivity"
+            android:name=".Driver.ScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.UberMap.MapsActivity"
+            android:name=".UberMap.MapsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.webapp.oasis.Retailer.RetailerEditProfileActivity" />
-        <activity android:name="com.webapp.oasis.Retailer.RetailerProfileActivity" />
-        <activity android:name="com.webapp.oasis.Retailer.RetailerActivity" />
+        <activity android:name=".Retailer.RetailerEditProfileActivity" />
+        <activity android:name=".Retailer.RetailerProfileActivity" />
+        <activity android:name=".Retailer.RetailerActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.webapp.oasis.Admin.Map.MapsCustomerTrackingActivity"
+            android:name=".Admin.Map.MapsCustomerTrackingActivity"
             android:label="@string/title_activity_map_single_driver" />
         <activity
-            android:name="com.webapp.oasis.Admin.Map.MapSingleDriverActivity"
+            android:name=".Admin.Map.MapSingleDriverActivity"
             android:label="@string/title_activity_map_single_driver" />
         <activity
-            android:name="com.webapp.oasis.Customer.CustomerEditProfileActivity"
+            android:name=".Customer.CustomerEditProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.CustomerProfileActivity"
+            android:name=".Customer.CustomerProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.DriverEditProfileActivity"
+            android:name=".Driver.DriverEditProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.DriverProfileActivity"
+            android:name=".Driver.DriverProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.SelectItemListActivity"
+            android:name=".Customer.SelectItemListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.PlaceOrderActivity1"
+            android:name=".Customer.PlaceOrderActivity1"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.VehiclaUpdateDetailsActivity"
+            android:name=".Driver.VehiclaUpdateDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdminUpdateItemDetailsActivity"
+            android:name=".Admin.AdminUpdateItemDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.SplashIntro.StepperWizardColor"
+            android:name=".SplashIntro.StepperWizardColor"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.Map.MapsActivity"
+            android:name=".Admin.Map.MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.TechnicianListActivity"
+            android:name=".Admin.TechnicianListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.NotificationActivity"
+            android:name=".Admin.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AddTechnicianActivity"
+            android:name=".Admin.AddTechnicianActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.CustomerPlaceOrderActivity"
+            android:name=".Customer.CustomerPlaceOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.CustomerHomeActivity"
+            android:name=".Customer.CustomerHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AminInvoiceListActivity"
+            android:name=".Admin.AminInvoiceListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdminAddServiceActivity"
+            android:name=".Admin.AdminAddServiceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdmiItemActivity"
+            android:name=".Admin.AdmiItemActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.VehicleListActivity"
+            android:name=".Driver.VehicleListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdminDriverListActivity"
+            android:name=".Admin.AdminDriverListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Admin.AdmiinHomeScreen"
+            android:name=".Admin.AdmiinHomeScreen"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.MobileLoginActivity"
+            android:name=".Driver.MobileLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.LoginFirstScreen"
+            android:name=".LoginFirstScreen"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.AddVehicleActivity"
+            android:name=".Driver.AddVehicleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Customer.ComplaintStatusActivity"
+            android:name=".Customer.ComplaintStatusActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.Driver.DriverHomeActivity"
+            android:name=".Driver.DriverHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.OtpActivity"
+            android:name=".OtpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.LoginActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.webapp.oasis.SplashIntro.SplashActivity"
+            android:name=".SplashIntro.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -212,7 +213,7 @@
         </activity>
 
         <service
-            android:name="com.webapp.oasis.Notification.MyFirebaseMessagingService"
+            android:name=".Notification.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

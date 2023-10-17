@@ -2,9 +2,7 @@ package com.webapp.oasis.Admin;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.core.content.FileProvider;
+import androidx.appcompat.widget.SearchView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -27,7 +25,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.webapp.oasis.Admin.Adapter.AdminReportListAdapter;
 import com.webapp.oasis.Model.AdminItemListModel;
 import com.webapp.oasis.Model.AgentDriverOrderListModel;
@@ -36,9 +33,6 @@ import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 import com.webapp.oasis.databinding.FragmentReportBinding;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -68,10 +62,12 @@ public class ReportFragment extends Fragment {
     String login_from;
     String logincode;
     RecyclerView mRecyclerView;
-    AdminReportListAdapter myOrderAdapter;
+    AdminReportListAdapter adminReportListAdapter;
     SessionManager session;
     String technicianId_session;
     String csvFile;
+    private SearchView searchView;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentReportBinding.inflate(getLayoutInflater());
         SessionManager sessionManager = new SessionManager(getActivity());
@@ -86,6 +82,27 @@ public class ReportFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+        searchView = this.binding.getRoot().findViewById(R.id.searchview);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (adminReportListAdapter == null) {
+                    return false;
+                } else {
+                    adminReportListAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            }
+        });
+
         final ProgressDialog showMe = new ProgressDialog(getContext());
         showMe.setMessage("Please wait");
         showMe.setCancelable(true);
@@ -155,9 +172,9 @@ public class ReportFragment extends Fragment {
                                                     return (t2.getClosingDate()+t2.getClosingTime()).compareTo(t1.getClosingDate()+t1.getClosingTime());
                                                 }
                                     });
-                                            myOrderAdapter = new AdminReportListAdapter(getActivity(), f21dm);
-                                    mRecyclerView.setAdapter(myOrderAdapter);
-                                    myOrderAdapter.notifyDataSetChanged();
+                                            adminReportListAdapter = new AdminReportListAdapter(getActivity(), f21dm);
+                                    mRecyclerView.setAdapter(adminReportListAdapter);
+                                    adminReportListAdapter.notifyDataSetChanged();
                                     showMe.dismiss();
                                 } else {
                                     r14 = r0;
@@ -175,9 +192,9 @@ public class ReportFragment extends Fragment {
 //                                FragmentReportBinding FragmentReportBinding2 = FragmentReportBinding.this;
                                 String str10 = image2;
                                 String str11 = timing;
-                                myOrderAdapter = new AdminReportListAdapter(getActivity(), f21dm);
-                                mRecyclerView.setAdapter(myOrderAdapter);
-                                myOrderAdapter.notifyDataSetChanged();
+                                adminReportListAdapter = new AdminReportListAdapter(getActivity(), f21dm);
+                                mRecyclerView.setAdapter(adminReportListAdapter);
+                                adminReportListAdapter.notifyDataSetChanged();
                                 showMe.dismiss();
                                 r14 = r0;
                             } else {
@@ -213,7 +230,7 @@ public class ReportFragment extends Fragment {
 
         this.logincode.equals(ExifInterface.GPS_MEASUREMENT_2D);
         AdminReportListAdapter adminDriverListAdapter = new AdminReportListAdapter(getActivity(), this.f21dm);
-        this.myOrderAdapter = adminDriverListAdapter;
+        this.adminReportListAdapter = adminDriverListAdapter;
         this.mRecyclerView.setAdapter(adminDriverListAdapter);
 
         binding.rlexport.setOnClickListener(new View.OnClickListener() {

@@ -21,6 +21,7 @@ import com.webapp.oasis.Admin.AddStockActivity;
 import com.webapp.oasis.Admin.Add_Admin_credentials;
 import com.webapp.oasis.Admin.AdminAddServiceActivity;
 import com.webapp.oasis.Admin.AdminHomePage;
+import com.webapp.oasis.Admin.CustomerAllListActivity;
 import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.Model.ItemsModel;
 import com.webapp.oasis.R;
@@ -104,6 +105,12 @@ public class StockFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StockFragment.this.getActivity(), Add_Admin_credentials.class));
+            }
+        });
+    binding.mainContent.findViewById(R.id.rl_customerlist).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StockFragment.this.getActivity(), CustomerAllListActivity.class));
             }
         });
 

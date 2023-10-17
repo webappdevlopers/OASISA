@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,6 +53,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
     StringRequest stringRequest;
     SwipeRefreshLayout swipeRefreshLayout;
     String user_id;
+    private SearchView searchView;
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,24 @@ public class ComplaintStatusActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 ComplaintStatusActivity.this.onBackPressed();
+            }
+        });
+        searchView = this.binding.getRoot().findViewById(R.id.searchview);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (myOrderAdapter == null) {
+                    return false;
+                } else {
+                    myOrderAdapter.getFilter().filter(newText);
+                    return true;
+                }
             }
         });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.itemlistrecycler);

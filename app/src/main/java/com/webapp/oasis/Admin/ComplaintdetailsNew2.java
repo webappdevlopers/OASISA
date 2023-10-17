@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatRatingBar;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,12 +32,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.Admin.Adapter.SelectItemListAdapter;
 import com.webapp.oasis.Model.AdminItemListModel;
-import com.webapp.oasis.Model.ReportComplaintModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.SqlliteDb.DatabaseHelper;
 import com.webapp.oasis.Technician.technicianHomeActivity;
@@ -56,14 +54,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import jxl.Workbook;
-import jxl.WorkbookSettings;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 public class ComplaintdetailsNew2 extends AppCompatActivity {
     String CustomerId;
 
@@ -78,6 +68,7 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
     DatabaseHelper mydb;
     public static TextView tltitem;
     public static TextView tltitemcost;
+    private SearchView searchView;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +84,24 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
         this.mydb = new DatabaseHelper(ComplaintdetailsNew2.this);
         this.mydb.delete();
 
+        searchView = this.binding.getRoot().findViewById(R.id.searchview);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (myOrderAdapter == null) {
+                    return false;
+                } else {
+                    myOrderAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            }
+        });
         tltitem = findViewById(R.id.tltitem);
         tltitemcost = findViewById(R.id.tltitemcost);
         llproceed = findViewById(R.id.llproceed);
@@ -173,29 +182,6 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
     String CustomerIds;
 
     private void place_order() {
-        List<AdminItemListModel> list = new ArrayList<>();
-        list.addAll(mydb.getItemData());
-        List<AdminItemListModel> listWithoutItemId = new ArrayList<>();
-        for (int i= 0; i< list.size(); i++){
-            AdminItemListModel emodel = new AdminItemListModel(list.get(i).getBrandName(),list.get(i).getItemName(),
-                    list.get(i).getPrice(), list.get(i).getQty());
-            listWithoutItemId.add(emodel);
-        }
-        FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
-                .child(CustomerIds)
-                .child(ComplaintId)
-                .child("ItemsListWithoutItemId").setValue(listWithoutItemId);
-
-        FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
-                .child(CustomerIds)
-                .child(ComplaintId)
-                .child("ItemsList").setValue(list);
-
-        for (int i= 0; i< list.size(); i++){
-            FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("ADMIN/ITEMS/")
-                    .child(list.get(i).getItemID())
-                    .child("Qty").setValue((Integer.parseInt(list.get(i).getItemQty()) - Integer.parseInt(list.get(i).getQty()))+"");
-        }
         FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
                 .child(CustomerIds)
                 .child(ComplaintId)
@@ -222,6 +208,49 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
                 .child(CustomerIds)
                 .child(ComplaintId)
                 .child("TotalAmount").setValue(tltitemcost.getText().toString());
+
+        List<AdminItemListModel> list = new ArrayList<>();
+        List<AdminItemListModel> listWithoutItemId = new ArrayList<>();
+        list.addAll(mydb.getItemData());
+        try {
+            for (int i= 0; i< list.size(); i++){
+                AdminItemListModel emodel = new AdminItemListModel(list.get(i).getBrandName(),list.get(i).getItemName(),
+                        list.get(i).getPrice(), list.get(i).getQty());
+                Log.d("emodel"+i+1,emodel.toString());
+                listWithoutItemId.add(emodel);
+            }
+        }catch (Exception e) {
+            Log.e("Exception0:", e + "");
+        }
+        try {
+            FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
+                    .child(CustomerIds)
+                    .child(ComplaintId)
+                    .child("ItemsList").setValue(list);
+        }catch (Exception e) {
+            Log.e("Exception1:", e + "---");
+            Log.e("Exception1:", e + "---"+list);
+        }
+        try {
+
+            for (int i= 0; i< list.size(); i++){
+                FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("ADMIN/ITEMS/")
+                        .child(list.get(i).getItemID())
+                        .child("Qty").setValue((Integer.parseInt(list.get(i).getItemQty()) - Integer.parseInt(list.get(i).getQty()))+"");
+            }
+        }catch (Exception e) {
+            Log.e("Exception2:", e + "");
+        }
+        try {
+            FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
+                    .child(CustomerIds)
+                    .child(ComplaintId)
+                    .child("ItemsListWithoutItemId").setValue(listWithoutItemId);
+        }catch (Exception e) {
+            Log.e("Exception3:", e + "---");
+            Log.e("Exception3:", e + "---"+listWithoutItemId);
+        }
+
     }
 
 
@@ -280,7 +309,7 @@ public class ComplaintdetailsNew2 extends AppCompatActivity {
     }
 
     private void showCustomDialog() {
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(ComplaintdetailsNew2.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_add_review);
         dialog.setCancelable(true);
