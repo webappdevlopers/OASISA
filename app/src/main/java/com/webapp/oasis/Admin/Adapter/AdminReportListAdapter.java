@@ -54,10 +54,10 @@ public class AdminReportListAdapter extends RecyclerView.Adapter<AdminReportList
         this.hash = users.get(SessionManager.KEY_HASH);
     }
 
-//    @Override
-//    public int getItemViewType(int position) {
-//        return position;
-//    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
     public int getItemCount() {
         return this.mUser.size();

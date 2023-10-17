@@ -1,6 +1,7 @@
 package com.webapp.oasis.Admin;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,14 +10,18 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -127,37 +132,37 @@ public class Complaintdetails extends AppCompatActivity {
                     .child(getIntent().getStringExtra("CustomerId"))
                     .child(getIntent().getStringExtra("ComplaintId"))
                     .child("ItemsList").addValueEventListener(new ValueEventListener() {
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            Log.d("dataSnapshot1", dataSnapshot.toString());
-                            if (dataSnapshot.exists()) {
-                                Log.d("dataSnapshot", dataSnapshot.toString());
-                                Complaintdetails.this.f18dm.clear();
-                                for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-                                    Log.d("itemSnapshot", itemSnapshot.toString());
-                                    String itemName = (String) itemSnapshot.child("itemName").getValue(String.class);
-                                    String brandName = (String) itemSnapshot.child("brandName").getValue(String.class);
-                                    String qty = (String) itemSnapshot.child("qty").getValue(String.class);
-                                    String price = (String) itemSnapshot.child("price").getValue(String.class);
-                                    Complaintdetails.this.f18dm.add(new AdminItemListModel(itemName, brandName, qty, price, qty, (String) itemSnapshot.child("itemID").getValue(String.class)));
-                                    Complaintdetails complaintdetails = Complaintdetails.this;
-                                    myOrderAdapter = new BillSelectedItemListAdapter(Complaintdetails.this, Complaintdetails.this.f18dm);
-                                    mRecyclerView.setAdapter(Complaintdetails.this.myOrderAdapter);
-                                    myOrderAdapter.notifyDataSetChanged();
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.d("dataSnapshot1", dataSnapshot.toString());
+                    if (dataSnapshot.exists()) {
+                        Log.d("dataSnapshot", dataSnapshot.toString());
+                        Complaintdetails.this.f18dm.clear();
+                        for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
+                            Log.d("itemSnapshot", itemSnapshot.toString());
+                            String itemName = (String) itemSnapshot.child("itemName").getValue(String.class);
+                            String brandName = (String) itemSnapshot.child("brandName").getValue(String.class);
+                            String qty = (String) itemSnapshot.child("qty").getValue(String.class);
+                            String price = (String) itemSnapshot.child("price").getValue(String.class);
+                            Complaintdetails.this.f18dm.add(new AdminItemListModel(itemName, brandName, qty, price, qty, (String) itemSnapshot.child("itemID").getValue(String.class)));
+                            Complaintdetails complaintdetails = Complaintdetails.this;
+                            myOrderAdapter = new BillSelectedItemListAdapter(Complaintdetails.this, Complaintdetails.this.f18dm);
+                            mRecyclerView.setAdapter(Complaintdetails.this.myOrderAdapter);
+                            myOrderAdapter.notifyDataSetChanged();
 
-                                    Log.d("TAG", "Item Name: " + itemName + ", Brand Name: " + brandName + ", Qty: " + qty + ", Price: " + price);
-                                    showMe.dismiss();
-                                }
-                                return;
-                            } else {
-                                Log.d("TAGElse", "NotExists");
-                            }
+                            Log.d("TAG", "Item Name: " + itemName + ", Brand Name: " + brandName + ", Qty: " + qty + ", Price: " + price);
                             showMe.dismiss();
                         }
+                        return;
+                    } else {
+                        Log.d("TAGElse", "NotExists");
+                    }
+                    showMe.dismiss();
+                }
 
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w("TAG", "Failed to read value.", databaseError.toException());
-                        }
-                    });
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w("TAG", "Failed to read value.", databaseError.toException());
+                }
+            });
         } catch (Exception e) {
         }
 
@@ -393,7 +398,10 @@ public class Complaintdetails extends AppCompatActivity {
                                 String format2 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                                 DatabaseReference myRef = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint");
                                 Map<String, Object> data = new HashMap<>();
-                                data.put("Complaint", user_details.getComplaint());
+                                int startIndex = user_details.getComplaint().indexOf("Technician : ");
+                                String result = startIndex >= 0 ? user_details.getComplaint().substring(0, startIndex) : user_details.getComplaint();
+
+                                data.put("Complaint", result);
                                 data.put("Service", user_details.getService());
                                 data.put("Status", "Assign");
                                 data.put(HttpHeaders.DATE, user_details.getDate());
@@ -415,16 +423,18 @@ public class Complaintdetails extends AppCompatActivity {
                                             builder.setMessage("Complaint Has Been Assign to " + selectedTechnicianName);
                                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    Complaintdetails.this.startActivity(new Intent(Complaintdetails.this, Complaintdetails.class));
-                                                    Complaintdetails.this.finish();
+                                                    showCustomDialog(user_details.getCustomerID(), user_details.getComplaintId());
+//                                                    Complaintdetails.this.startActivity(new Intent(Complaintdetails.this, Complaintdetails.class));
+//                                                    Complaintdetails.this.finish();
                                                 }
                                             });
-                                            builder.setNegativeButton("GO TO HOME PAGE", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    Complaintdetails.this.startActivity(new Intent(Complaintdetails.this, CustomerHomeActivity.class));
-                                                    Complaintdetails.this.finish();
-                                                }
-                                            });
+//                                            builder.setNegativeButton("GO TO HOME PAGE", new DialogInterface.OnClickListener() {
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                    showCustomDialog(user_details.getCustomerID(), user_details.getComplaintId());
+////                                                    Complaintdetails.this.startActivity(new Intent(Complaintdetails.this, CustomerHomeActivity.class));
+////                                                    Complaintdetails.this.finish();
+//                                                }
+//                                            });
                                             builder.create().show();
                                             Log.d(Oscillator.TAG, "Data uploaded successfully");
                                             return;
@@ -464,6 +474,55 @@ public class Complaintdetails extends AppCompatActivity {
 
 //        Complaintdetails.this.binding.tolalAmt.setVisibility(View.GONE);
 //        mRecyclerView.setVisibility(View.GONE);
+    }
+
+
+    private void showCustomDialog(String CustomerIds, String ComplaintId) {
+        final Dialog dialog = new Dialog(Complaintdetails.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_add_review);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        final EditText et_post = (EditText) dialog.findViewById(R.id.et_post);
+
+        ((AppCompatButton) dialog.findViewById(R.id.bt_submit)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String review = et_post.getText().toString();
+
+                if (review.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Add Remark", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Complaintdetails.this, "Remark Added Successfully", Toast.LENGTH_SHORT).show();
+                    int secondsDelayed = 1;
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+
+                            FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/").getReference("Customer/Complaint/")
+                                    .child(CustomerIds)
+                                    .child(ComplaintId)
+                                    .child("AdminRemark").setValue(review + "");
+                            Complaintdetails.this.startActivity(new Intent(Complaintdetails.this, Complaintdetails.class));
+                            dialog.dismiss();
+                        }
+                    }, secondsDelayed * 2000);
+                }
+            }
+        });
+        ((AppCompatButton) dialog.findViewById(R.id.bt_cancel)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 
     private void getTechnicianDetails() {

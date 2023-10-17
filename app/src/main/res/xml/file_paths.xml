@@ -5,7 +5,12 @@
    <!-- <external-path name="external" path="." />
 
     <cache-path name="external" path="." />-->
-
+    <files-path
+        name="oasis_files"
+        path="Documents/oasis/" />
+    <external-path
+        name="external_files"
+        path="." />
     <external-path
         name="external"
         path="." />

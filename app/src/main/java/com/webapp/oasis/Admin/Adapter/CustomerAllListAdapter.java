@@ -44,10 +44,10 @@ public class CustomerAllListAdapter extends RecyclerView.Adapter<CustomerAllList
         this.mUser1 = mUser2;
     }
 
-//    @Override
-//    public int getItemViewType(int position) {
-//        return position;
-//    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
     public int getItemCount() {
         return this.mUser.size();

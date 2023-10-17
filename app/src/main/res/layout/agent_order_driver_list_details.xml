@@ -133,7 +133,7 @@
                     android:fontFamily="@font/calibri"
                     android:textIsSelectable="true"
                     android:textColor="#61606c"
-                    android:textSize="13dp" />
+                    android:textSize="13.5dp" />
             </LinearLayout>
 
             <LinearLayout

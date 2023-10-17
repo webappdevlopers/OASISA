@@ -139,7 +139,23 @@ public class ComplaintsFragment extends Fragment {
                                 String obj3 = obj2;
                                 if (TextUtils.isEmpty(ComplaintsFragment.this.technicianId_session)) {
                                     ComplaintsFragment.this.binding.rllogout.setVisibility(View.GONE);
-                                    String complaint = (String) complaintData.get("Complaint");
+                                    String tname = (String) complaintData.get("TechnicianName");
+                                    String aremark = (String) complaintData.get("AdminRemark");
+                                    String complaint= "",rem = "",tn = "";
+
+                                    try {
+                                        if (!(tname.isEmpty() || tname.equals(null)))
+                                            tn = "\nTechnician : "+(String) complaintData.get("TechnicianName");
+                                    }catch (Exception e){}
+                                    try {
+                                        if(!(aremark.isEmpty() || aremark.equals(null)))
+                                            rem = "\nAdmin Remark : "+(String) complaintData.get("AdminRemark");
+
+                                    }catch (Exception e){}
+
+                                    complaint = (String) complaintData.get("Complaint") + tn + rem;
+
+
                                     String image = (String) complaintData.get("Image");
                                     String str = (String) complaintData.get("StartDate");
                                     String str2 = (String) complaintData.get("EndDate");
@@ -155,7 +171,7 @@ public class ComplaintsFragment extends Fragment {
                                     Collections.sort(ComplaintsFragment.this.f21dm, new Comparator<AgentDriverOrderListModel>() {
                                         @Override
                                         public int compare(AgentDriverOrderListModel t1, AgentDriverOrderListModel t2) {
-                                            return (t2.getStatus()).compareTo(t1.getStatus());
+                                            return (t2.getStatus()+t2.getDate()).compareTo(t1.getStatus()+t1.getDate());
                                         }
                                     });
                                     try {
@@ -177,7 +193,22 @@ public class ComplaintsFragment extends Fragment {
                                 String str7 = (String) complaintData.get("StartDate");
                                 String str8 = (String) complaintData.get("EndDate");
                                 String str9 = (String) complaintData.get("TechnicianId");
-                                ComplaintsFragment.this.f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), (String) complaintData.get("Complaint"), (String) complaintData.get("Service"), (String) complaintData.get("Status"), image2, timing, (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"),"","",(String) complaintData.get("TechnicianRemark")));
+                                String tname = (String) complaintData.get("TechnicianName");
+                                String aremark = (String) complaintData.get("AdminRemark");
+                                String complaint= "",rem = "",tn = "";
+                                try {
+                                    if (!(tname.isEmpty() || tname.equals(null)))
+                                        tn = "\nTechnician : "+(String) complaintData.get("TechnicianName");
+                                }catch (Exception e){}
+                                try {
+                                    if(!(aremark.isEmpty() || aremark.equals(null)))
+                                        rem = "\nAdmin Remark : "+(String) complaintData.get("AdminRemark");
+
+                                }catch (Exception e){}
+
+
+                                complaint = (String) complaintData.get("Complaint") + tn + rem;
+                                ComplaintsFragment.this.f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), complaint, (String) complaintData.get("Service"), (String) complaintData.get("Status"), image2, timing, (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"),"","",(String) complaintData.get("TechnicianRemark")));
                                 ComplaintsFragment complaintsFragment2 = ComplaintsFragment.this;
                                 String str10 = image2;
                                 String str11 = timing;
