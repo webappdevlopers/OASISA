@@ -1,12 +1,17 @@
 package com.webapp.oasis;
 
+import static kotlin.io.ConsoleKt.readLine;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -50,6 +55,13 @@ import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.Technician.technicianHomeActivity;
 import com.webapp.oasis.Utilities.SessionManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -165,6 +177,62 @@ public class LoginFirstScreen extends AppCompatActivity {
                 LoginFirstScreen.this.startActivity(intent);
             }
         });
+        handlerr = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+                DatabaseReference mDbRef = mDatabase.getReference("Update");
+
+                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+                        String value = (String) dataSnapshot.getValue();
+
+                        if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginFirstScreen.this);
+                            alertDialogBuilder.setCancelable(false); // Make the dialog non-cancelable.
+                            alertDialogBuilder.setTitle("Update Required");
+                            alertDialogBuilder.setMessage("A new version is available. Please update the app.");
+                            alertDialogBuilder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Redirect to the Play Store for the update.
+                                    Context context = getApplicationContext();
+
+                                    AppUpdateUtils.redirectToPlayStore(context);
+                                }
+                            });
+                            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Context context = getApplicationContext();
+
+                                    AppUpdateUtils.redirectToPlayStore(context);
+
+                                    // Handle cancel button click if needed.
+                                }
+                            });
+
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        };
+        handlerr.sendEmptyMessage(0);
+        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected() == true) {
+
+        } else {
+            NetworkDialog();
+        }
 
         handler = new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -191,8 +259,6 @@ public class LoginFirstScreen extends AppCompatActivity {
                             a.addCategory("android.intent.category.HOME");
                             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(a);
-                        } else if (!value.equalsIgnoreCase(String.valueOf(BuildConfig.VERSION_CODE))) {
-                            redirectToPlayStore();
                         }
                     }
 
@@ -205,9 +271,9 @@ public class LoginFirstScreen extends AppCompatActivity {
         };
 
         handler.sendEmptyMessage(0);
-        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected() == true) {
+        ConnectivityManager ConnectionManagerr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfoo = ConnectionManagerr.getActiveNetworkInfo();
+        if (networkInfoo != null && networkInfo.isConnected() == true) {
 
         } else {
             NetworkDialog();
@@ -256,6 +322,8 @@ public class LoginFirstScreen extends AppCompatActivity {
     }
 
     private Handler handler = new Handler();
+    private Handler handlerr = new Handler();
+
     BannerAdapter bannerAdapter;
 
     private void showBannerOnViewPager() {
@@ -424,17 +492,4 @@ public class LoginFirstScreen extends AppCompatActivity {
         }
     }
 
-    private void redirectToPlayStore() {
-        try {
-            // Open the app's page on the Play Store for updates
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("market://details?id=" + getPackageName()));
-            startActivity(intent);
-        } catch (android.content.ActivityNotFoundException e) {
-            // If the Play Store app is not available, open the Play Store website
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
-            startActivity(intent);
-        }
-    }
 }
