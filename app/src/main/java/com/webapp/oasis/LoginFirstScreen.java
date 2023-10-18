@@ -189,7 +189,7 @@ public class LoginFirstScreen extends AppCompatActivity {
                         String value = (String) dataSnapshot.getValue();
 
                         if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
-                            SweetAlertExample.showSweetAlert(LoginFirstScreen.this, "Update Available", "A new version is available. Update now?", SweetAlertDialog.WARNING_TYPE, true);
+                            SweetAlertExample.showSweetAlert(LoginFirstScreen.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
 
 
                         }
