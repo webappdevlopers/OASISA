@@ -66,6 +66,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.annotations.NonNull;
 import me.relex.circleindicator.CircleIndicator;
 
@@ -188,32 +189,9 @@ public class LoginFirstScreen extends AppCompatActivity {
                         String value = (String) dataSnapshot.getValue();
 
                         if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
-                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginFirstScreen.this);
-                            alertDialogBuilder.setCancelable(false); // Make the dialog non-cancelable.
-                            alertDialogBuilder.setTitle("Update Required");
-                            alertDialogBuilder.setMessage("A new version is available. Please update the app.");
-                            alertDialogBuilder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Redirect to the Play Store for the update.
-                                    Context context = getApplicationContext();
+                            SweetAlertExample.showSweetAlert(LoginFirstScreen.this, "Update Available", "A new version is available. Update now?", SweetAlertDialog.WARNING_TYPE, true);
 
-                                    AppUpdateUtils.redirectToPlayStore(context);
-                                }
-                            });
-                            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Context context = getApplicationContext();
 
-                                    AppUpdateUtils.redirectToPlayStore(context);
-
-                                    // Handle cancel button click if needed.
-                                }
-                            });
-
-                            AlertDialog alertDialog = alertDialogBuilder.create();
-                            alertDialog.show();
                         }
 
                     }
