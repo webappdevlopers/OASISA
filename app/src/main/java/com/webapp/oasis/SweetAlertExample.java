@@ -11,7 +11,7 @@ public class SweetAlertExample {
         SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(activity, alertType)
                 .setTitleText(title)
                 .setContentText(message);
-
+        sweetAlertDialog.setCancelable(false);
         if (showUpdateButton) {
             sweetAlertDialog.setConfirmText("Update")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
