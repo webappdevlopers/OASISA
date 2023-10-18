@@ -155,24 +155,37 @@ public class ReportFragment extends Fragment {
                             if (TextUtils.isEmpty(technicianId_session) || TextUtils.isEmpty(technicianId)) {
                                 String obj3 = obj2;
                                 if (TextUtils.isEmpty(technicianId_session)) {
-                                    String complaint = (String) complaintData.get("Complaint");
+                                    String tname = (String) complaintData.get("TechnicianName");
+                                    String aremark = (String) complaintData.get("AdminRemark");
+                                    String complaint= "",rem = "",tn = "";
+                                    try {
+                                        if (!(tname.isEmpty() || tname.equals(null)))
+                                            tn = "\nTechnician : "+(String) complaintData.get("TechnicianName");
+                                    }catch (Exception e){}
+                                    try {
+                                        if(!(aremark.isEmpty() || aremark.equals(null)))
+                                            rem = "\nAdmin Remark : "+(String) complaintData.get("AdminRemark");
+
+                                    }catch (Exception e){}
+
+                                    complaint = (String) complaintData.get("Complaint") + tn + rem;
                                     String image = (String) complaintData.get("Image");
                                     String str = (String) complaintData.get("StartDate");
                                     String str2 = (String) complaintData.get("EndDate");
                                     String str3 = (String) complaintData.get("TechnicianId");
 //                                    r14 = this;
                                     Map<String, Object> map = complaintData;
-                                    f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), complaint, (String) complaintData.get("Service"), (String) complaintData.get("Status"), image, (String) complaintData.get("Timing"), (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"), (String) complaintData.get("ClosingDate"), (String) complaintData.get("ClosingTime"),(String) complaintData.get("TechnicianRemark")));
+                                    f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), complaint, (String) complaintData.get("Service"), (String) complaintData.get("Status"), image, (String) complaintData.get("Timing"), (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"), (String) complaintData.get("ClosingDate"), (String) complaintData.get("ClosingTime"), (String) complaintData.get("TechnicianRemark")));
 //                                    FragmentReportBinding FragmentReportBinding = FragmentReportBinding.this;
                                     String str4 = complaint;
                                     String str5 = image;
                                     Collections.sort(f21dm, new Comparator<AgentDriverOrderListModel>() {
-                                                @Override
-                                                public int compare(AgentDriverOrderListModel t1, AgentDriverOrderListModel t2) {
-                                                    return (t2.getClosingDate()+t2.getClosingTime()).compareTo(t1.getClosingDate()+t1.getClosingTime());
-                                                }
+                                        @Override
+                                        public int compare(AgentDriverOrderListModel t1, AgentDriverOrderListModel t2) {
+                                            return (t2.getClosingDate() + t2.getClosingTime()).compareTo(t1.getClosingDate() + t1.getClosingTime());
+                                        }
                                     });
-                                            adminReportListAdapter = new AdminReportListAdapter(getActivity(), f21dm);
+                                    adminReportListAdapter = new AdminReportListAdapter(getActivity(), f21dm);
                                     mRecyclerView.setAdapter(adminReportListAdapter);
                                     adminReportListAdapter.notifyDataSetChanged();
                                     showMe.dismiss();
@@ -188,7 +201,21 @@ public class ReportFragment extends Fragment {
                                 String str7 = (String) complaintData.get("StartDate");
                                 String str8 = (String) complaintData.get("EndDate");
                                 String str9 = (String) complaintData.get("TechnicianId");
-                                f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), (String) complaintData.get("Complaint"), (String) complaintData.get("Service"), (String) complaintData.get("Status"), image2, timing, (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"), (String) complaintData.get("ClosingDate"), (String) complaintData.get("ClosingTime"),(String) complaintData.get("TechnicianRemark")));
+                                String tname = (String) complaintData.get("TechnicianName");
+                                String aremark = (String) complaintData.get("AdminRemark");
+                                String complaint= "",rem = "",tn = "";
+                                try {
+                                    if (!(tname.isEmpty() || tname.equals(null)))
+                                        tn = "\nTechnician : "+(String) complaintData.get("TechnicianName");
+                                }catch (Exception e){}
+                                try {
+                                    if(!(aremark.isEmpty() || aremark.equals(null)))
+                                        rem = "\nAdmin Remark : "+(String) complaintData.get("AdminRemark");
+
+                                }catch (Exception e){}
+
+                                complaint = (String) complaintData.get("Complaint") + tn + rem;
+                                f21dm.add(new AgentDriverOrderListModel((String) complaintData.get("CustomerName"), (String) complaintData.get("CustomerMobileNumber"), complaint, (String) complaintData.get("Service"), (String) complaintData.get("Status"), image2, timing, (String) complaintData.get(HttpHeaders.DATE), (String) complaintData.get("ComplaintId"), (String) complaintData.get("CustomerId"), (String) complaintData.get("ClosingDate"), (String) complaintData.get("ClosingTime"), (String) complaintData.get("TechnicianRemark")));
 //                                FragmentReportBinding FragmentReportBinding2 = FragmentReportBinding.this;
                                 String str10 = image2;
                                 String str11 = timing;
@@ -244,7 +271,7 @@ public class ReportFragment extends Fragment {
 
                 String currentTime = new SimpleDateFormat("HH-mm-ss", Locale.getDefault()).format(new Date());
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                csvFile = "OASIS/Complaints-" + currentDate +"-"+currentTime+ ".xls";
+                csvFile = "OASIS/Complaints-" + currentDate + "-" + currentTime + ".xls";
                 createExcelSheet();
 
                 Toast.makeText(getActivity(), "File Saved in OASIS folder in Phone Memory", Toast.LENGTH_LONG).show();
@@ -287,12 +314,12 @@ public class ReportFragment extends Fragment {
                                 String ClosingTime = (String) complaintData.get("ClosingTime");
                                 String TotalAmount = (String) complaintData.get("TotalAmount");
                                 Log.d("complaintData", complaintData.toString() + "");
-                                String ItemsList="";
+                                String ItemsList = "";
                                 try {
-                                    ItemsList= (String) complaintData.get("ItemsListWithoutItemId").toString();
+                                    ItemsList = (String) complaintData.get("ItemsListWithoutItemId").toString();
                                     Log.d("ItemsList::", ItemsList + "");
-                                }catch (Exception e){
-                                    Log.d("Exception",e.toString());
+                                } catch (Exception e) {
+                                    Log.d("Exception", e.toString());
                                 }
                                 Log.d("ItemsList::", ItemsList + "");
 
@@ -300,7 +327,7 @@ public class ReportFragment extends Fragment {
 //                                    ItemsList2 = new StringBuffer();
 //                                    ItemsList2.append(json);
 
-                                    dm.clear();
+                                dm.clear();
 //                                    JSONArray applist = new JSONArray(ItemsList);
 //                                    if (applist != null && applist.length() > 0) {
 //
@@ -350,6 +377,7 @@ public class ReportFragment extends Fragment {
 
     File directory, sd, file;
     WritableWorkbook workbook;
+
     void createExcelSheet() {
         File externalFilesDir = getContext().getExternalFilesDir(null);
         if (externalFilesDir != null) {
@@ -402,7 +430,7 @@ public class ReportFragment extends Fragment {
                 sheet.addCell(new Label(10, i + 1, reportComplaintModel.get(i).getClosingTime()));
                 sheet.addCell(new Label(11, i + 1, reportComplaintModel.get(i).getTotalAmount()));
                 sheet.addCell(new Label(12, i + 1, reportComplaintModel.get(i).getItemsList().toString()));
-                Log.d( (i + 1)+"", reportComplaintModel.get(i).getItemsList().toString());
+                Log.d((i + 1) + "", reportComplaintModel.get(i).getItemsList().toString());
             }
         } catch (Exception e) {
             e.printStackTrace();

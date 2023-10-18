@@ -2,12 +2,17 @@ package com.webapp.oasis.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +31,11 @@ import com.webapp.oasis.Model.ItemsModel;
 import com.webapp.oasis.R;
 import com.webapp.oasis.Utilities.SessionManager;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerAllListActivity extends AppCompatActivity {
 
@@ -34,15 +43,16 @@ public class CustomerAllListActivity extends AppCompatActivity {
     CustomerAllListAdapter myOrderAdapter;
     SessionManager session;
     ArrayList<CustomerAllListModel> customerAllListModels = new ArrayList<>();
-    ImageView back;
+    ImageView back, list;
     private SearchView searchView;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_all_list);
 
         back = findViewById(R.id.back);
+        list = findViewById(R.id.list);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +115,49 @@ public class CustomerAllListActivity extends AppCompatActivity {
                 Log.w("TAG", "Failed to read value.", databaseError.toException());
             }
         });
+
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportToCsv(customerAllListModels);
+            }
+        });
+    }
+
+    public void exportToCsv(List<CustomerAllListModel> list) {
+        File csvFile = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "customer_data.csv");
+
+        try {
+            csvFile.getParentFile().mkdirs(); // Create parent directories if they don't exist
+            csvFile.createNewFile(); // Create the CSV file
+
+            FileWriter writer = new FileWriter(csvFile);
+
+            for (int i = 0; i < list.size(); i++) {
+                writer.append(list.get(i).getName()).append(",").append(list.get(i).getMobileNumber()).append("\n");
+            }
+            Log.d("Filecreated:", writer.toString());
+
+            writer.flush();
+            writer.close();
+
+            Uri fileUri1 = FileProvider.getUriForFile(
+                    CustomerAllListActivity.this,
+                    "com.webapp.oasis",
+                    new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "customer_data.csv")
+            );
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/csv");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri1);
+            shareIntent.setPackage("com.whatsapp");
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            String url = "https://api.whatsapp.com/send?phone=+91 8855000093" + "Phone with international format" + "&text=Customer Data";
+//            shareIntent.setData(Uri.parse(url));
+            startActivity(shareIntent);
+
+        } catch (IOException e) {
+            Log.d("Exception:", e.toString());
+            e.printStackTrace();
+        }
     }
 }
