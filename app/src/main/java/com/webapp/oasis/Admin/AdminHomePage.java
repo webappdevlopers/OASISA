@@ -25,15 +25,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.webapp.oasis.BuildConfig;
+import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.R;
+import com.webapp.oasis.SweetAlertExample;
 import com.webapp.oasis.Utilities.SessionManager;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.annotations.NonNull;
 
 public class AdminHomePage extends AppCompatActivity {
     DrawerLayout Drawer;
 
     SessionManager session;
+
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +50,43 @@ public class AdminHomePage extends AppCompatActivity {
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         this.session = sessionManager;
+        handlerr = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+                DatabaseReference mDbRef = mDatabase.getReference("Update");
+
+                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+                        String value = (String) dataSnapshot.getValue();
+
+                        if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
+                            SweetAlertExample.showSweetAlert(AdminHomePage.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        };
+
+
+        handlerr.sendEmptyMessage(0);
+        ConnectivityManager ConnectionManagerr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfoo = ConnectionManagerr.getActiveNetworkInfo();
+        if (networkInfoo != null && networkInfoo.isConnected() == true) {
+
+        } else {
+            NetworkDialog();
+        }
+
+
         handler = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
@@ -63,6 +105,7 @@ public class AdminHomePage extends AppCompatActivity {
                             Toast.makeText(AdminHomePage.this, "Server Plan is Expired\nKindly renew your server", Toast.LENGTH_LONG).show();
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
@@ -79,7 +122,9 @@ public class AdminHomePage extends AppCompatActivity {
             NetworkDialog();
         }
     }
+
     private Handler handler = new Handler();
+    private Handler handlerr = new Handler();
 
     private void NetworkDialog() {
         final Dialog dialogs = new Dialog(AdminHomePage.this);
@@ -90,7 +135,7 @@ public class AdminHomePage extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminHomePage.this,AdminHomePage.class);
+                Intent intent = new Intent(AdminHomePage.this, AdminHomePage.class);
                 startActivity(intent);
                 finish();
                 dialogs.dismiss();

@@ -251,7 +251,7 @@ public class LoginFirstScreen extends AppCompatActivity {
         handler.sendEmptyMessage(0);
         ConnectivityManager ConnectionManagerr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfoo = ConnectionManagerr.getActiveNetworkInfo();
-        if (networkInfoo != null && networkInfo.isConnected() == true) {
+        if (networkInfoo != null && networkInfoo.isConnected() == true) {
 
         } else {
             NetworkDialog();

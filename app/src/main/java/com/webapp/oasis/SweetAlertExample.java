@@ -1,7 +1,6 @@
 package com.webapp.oasis;
 
 import android.app.Activity;
-import android.content.Context;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -17,8 +16,6 @@ public class SweetAlertExample {
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            // Add your update action here
-                            // Redirect to the Play Store for the update.
 
                             AppUpdateUtils.redirectToPlayStore(activity.getApplicationContext());
 

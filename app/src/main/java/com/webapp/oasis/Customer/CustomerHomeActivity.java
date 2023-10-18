@@ -51,15 +51,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.webapp.oasis.Admin.AdmiinHomeScreen;
+import com.webapp.oasis.BuildConfig;
 import com.webapp.oasis.Donation.DonationActivity;
 import com.webapp.oasis.LoginActivity;
 import com.webapp.oasis.LoginFirstScreen;
 import com.webapp.oasis.R;
 import com.webapp.oasis.SplashIntro.SplashActivity;
+import com.webapp.oasis.SweetAlertExample;
 import com.webapp.oasis.Utilities.SessionManager;
 
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.annotations.NonNull;
 
 public class CustomerHomeActivity extends AppCompatActivity implements LocationListener, ActionBar.TabListener {
@@ -108,6 +111,42 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
         textView.setText("Hello, " + users.get("name"));
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rlprofile);
         this.rlprofile = relativeLayout;
+        handlerr = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+                DatabaseReference mDbRef = mDatabase.getReference("Update");
+
+                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+                        String value = (String) dataSnapshot.getValue();
+
+                        if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
+                            SweetAlertExample.showSweetAlert(CustomerHomeActivity.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        };
+
+
+        handlerr.sendEmptyMessage(0);
+        ConnectivityManager ConnectionManagerr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfoo = ConnectionManagerr.getActiveNetworkInfo();
+        if (networkInfoo != null && networkInfoo.isConnected() == true) {
+
+        } else {
+            NetworkDialog();
+        }
+
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerHomeActivity.this, CustomerProfileActivity.class);
@@ -352,6 +391,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
         }
     }
     private Handler handler = new Handler();
+    private Handler handlerr = new Handler();
 
     private void NetworkDialog() {
         final Dialog dialogs = new Dialog(CustomerHomeActivity.this);
