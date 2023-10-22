@@ -53,24 +53,18 @@ public class AdminHomePage extends AppCompatActivity {
         handlerr = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
-                DatabaseReference mDbRef = mDatabase.getReference("Update");
+                DatabaseReference mDbRef = mDatabase.getReference("Version");
 
                 mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(final DataSnapshot dataSnapshot) {
                         String value = (String) dataSnapshot.getValue();
-
                         if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
                             SweetAlertExample.showSweetAlert(AdminHomePage.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
-
-
                         }
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }

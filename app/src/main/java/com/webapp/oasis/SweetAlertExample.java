@@ -19,7 +19,7 @@ public class SweetAlertExample {
 
                             AppUpdateUtils.redirectToPlayStore(activity.getApplicationContext());
 
-                            sweetAlertDialog.dismissWithAnimation();
+//                            sweetAlertDialog.dismissWithAnimation();
                         }
                     });
         }

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/secondlayout"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="-65dp"
+        android:layout_marginBottom="-255dp"
         android:scaleType="fitXY"
         android:src="@drawable/buildings" />
 
@@ -275,6 +275,73 @@
                                 android:layout_marginBottom="16dp"
                                 android:gravity="center"
                                 android:text="Profile"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_catlog"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                app:tint="#575fa8"
+                                app:srcCompat="@drawable/ic_cartaddplus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="16dp"
+                                android:text="Catlog"
+                                android:textColor="#393939"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-15dp"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_aboutus"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bordergrey_square"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="25dp"
+                                android:src="@drawable/ic_usersnewimg"
+                                app:tint="#575fa8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="16dp"
+                                android:gravity="center"
+                                android:text="About Us"
                                 android:textColor="#393939"
                                 android:textSize="15dp" />
                         </RelativeLayout>

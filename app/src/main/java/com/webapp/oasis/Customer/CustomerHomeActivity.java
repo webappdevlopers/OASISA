@@ -59,6 +59,7 @@ import com.webapp.oasis.R;
 import com.webapp.oasis.SplashIntro.SplashActivity;
 import com.webapp.oasis.SweetAlertExample;
 import com.webapp.oasis.Utilities.SessionManager;
+import com.webapp.oasis.WebviewActivity;
 
 import java.util.HashMap;
 
@@ -86,6 +87,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
     RelativeLayout rl_treac_order;
     RelativeLayout rllogout;
     RelativeLayout rlcall;
+    RelativeLayout rl_catlog, rl_aboutus;
     RelativeLayout rlnotification;
     RelativeLayout rlprofile;
     SessionManager session;
@@ -114,7 +116,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
         handlerr = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
-                DatabaseReference mDbRef = mDatabase.getReference("Update");
+                DatabaseReference mDbRef = mDatabase.getReference("Version");
 
                 mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -123,20 +125,14 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
 
                         if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
                             SweetAlertExample.showSweetAlert(CustomerHomeActivity.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
-
-
                         }
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
         };
-
 
         handlerr.sendEmptyMessage(0);
         ConnectivityManager ConnectionManagerr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -168,15 +164,23 @@ public class CustomerHomeActivity extends AppCompatActivity implements LocationL
                 CustomerHomeActivity.this.startActivity(new Intent(CustomerHomeActivity.this, AddComplaintActivity.class));
             }
         });
-        RelativeLayout relativeLayout4 = (RelativeLayout) findViewById(R.id.rl_driverdetails);
-        this.rl_driverdetails = relativeLayout4;
-        relativeLayout4.setOnClickListener(new View.OnClickListener() {
+        rl_aboutus = (RelativeLayout) findViewById(R.id.rl_aboutus);
+        rl_aboutus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerHomeActivity.this, CustomerProfileActivity.class);
-                intent.putExtra(LoginFirstScreen.GOOGLE_ACCOUNT, CustomerHomeActivity.this.googleSignInAccount);
+                Intent intent = new Intent(CustomerHomeActivity.this, WebviewActivity.class);
+                intent.putExtra("url","https://oasisro.web.app/");
                 CustomerHomeActivity.this.startActivity(intent);
             }
         });
+        rl_catlog = (RelativeLayout) findViewById(R.id.rl_catlog);
+        rl_catlog.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerHomeActivity.this, WebviewActivity.class);
+                intent.putExtra("url","https://oasisglobe.in/shop");
+                CustomerHomeActivity.this.startActivity(intent);
+            }
+        });
+
         RelativeLayout relativeLayout5 = (RelativeLayout) findViewById(R.id.rl_invoices);
         this.rl_invoices = relativeLayout5;
         relativeLayout5.setOnClickListener(new View.OnClickListener() {

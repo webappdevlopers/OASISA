@@ -1,7 +1,5 @@
 package com.webapp.oasis;
 
-import static kotlin.io.ConsoleKt.readLine;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -129,6 +127,28 @@ public class LoginFirstScreen extends AppCompatActivity {
                 startActivity(new Intent(LoginFirstScreen.this, AdminHomePage.class));
                 finish();
             }
+        } else {
+            FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
+            DatabaseReference mDbRef = mDatabase.getReference("Version");
+
+            mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(final DataSnapshot dataSnapshot) {
+                    String value = (String) dataSnapshot.getValue();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
+                                SweetAlertExample.showSweetAlert(LoginFirstScreen.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
+                            }
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         }
         new Timer().scheduleAtFixedRate(new TimerTask() {
             public /* synthetic */ void lambda$run$0$LoginFirstScreen$1() {
@@ -178,31 +198,6 @@ public class LoginFirstScreen extends AppCompatActivity {
                 LoginFirstScreen.this.startActivity(intent);
             }
         });
-        handlerr = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://oasis-a3b2c-default-rtdb.firebaseio.com/");
-                DatabaseReference mDbRef = mDatabase.getReference("Update");
-
-                mDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(final DataSnapshot dataSnapshot) {
-                        String value = (String) dataSnapshot.getValue();
-
-                        if (!value.equals(String.valueOf(BuildConfig.VERSION_CODE))) {
-                            SweetAlertExample.showSweetAlert(LoginFirstScreen.this, "Update Available", "A new version is available. Update now ?", SweetAlertDialog.WARNING_TYPE, true);
-
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        };
         handlerr.sendEmptyMessage(0);
         ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
